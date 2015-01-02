@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var soundCloudLoginURL: NSURL!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let spotifyAuth = SPTAuth.defaultInstance()
+        /*let spotifyAuth = SPTAuth.defaultInstance()
         spotifyLoginURL = spotifyAuth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope])
         
         var timer = NSTimer(timeInterval: 0.1, target: self, selector: "spotifyLogin", userInfo: nil, repeats: true)
-        timer.fire()
+        timer.fire()*/
         
         return true
     }

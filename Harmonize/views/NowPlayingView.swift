@@ -8,8 +8,26 @@
 
 class NowPlayingView: UIView {
     
+    var a: UIImageView!
+    var b: UILabel!
+    var c: UILabel!
+    
     override init() {
         super.init(frame: UIScreen.mainScreen().bounds)
+        
+        a = UIImageView(frame: CGRectMake(136, 183, 300, 300))
+        
+        b = UILabel(frame: CGRectMake(194, 524, 350, 50))
+        b.text = "playing now wowowowow"
+        
+        c = UILabel(frame: CGRectMake(34, 300, 250, 50))
+        c.text = "Avicii"
+        
+        self.addSubview(a)
+        self.addSubview(b)
+        self.addSubview(c)
+        
+        Mozart().load("https://i.scdn.co/image/9a8686f673072b38fee12b742d4460907ebc6f08").into(a)
     }
     
     required init(coder aDecoder: NSCoder) {
