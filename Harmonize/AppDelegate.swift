@@ -13,57 +13,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    var loginURL: NSURL?
+    var spotifyLoginURL: NSURL!
+    var soundCloudLoginURL: NSURL!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let auth = SPTAuth.defaultInstance()
-        loginURL = auth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope])
+        /*let spotifyAuth = SPTAuth.defaultInstance()
+        spotifyLoginURL = spotifyAuth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope])
         
         var timer = NSTimer(timeInterval: 0.1, target: self, selector: "spotifyLogin", userInfo: nil, repeats: true)
+        timer.fire()*/
+        
+        soundCloudLoginURL = NSURL(string: "https://soundcloud.com/connect?client_id=\(soundCloudClientID)&response_type=code&redirect_uri=\(soundCloudCallbackURL)")
+        
+        var timer = NSTimer(timeInterval: 0.1, target: self, selector: "soundCloudLogin", userInfo: nil, repeats: true)
         timer.fire()
         
         return true
     }
     
     func spotifyLogin() {
-        UIApplication.sharedApplication().openURL(loginURL!)
+        UIApplication.sharedApplication().openURL(spotifyLoginURL)
+    }
+    
+    func soundCloudLogin() {
+        UIApplication.sharedApplication().openURL(soundCloudLoginURL)
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        if SPTAuth.defaultInstance().canHandleURL(url, withDeclaredRedirectURL: NSURL(string: spotifyCallbackURL)) {
-            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, tokenSwapServiceEndpointAtURL: NSURL(string: spotifyTokenSwapURL), callback: { (error, session) -> Void in
-                if error != nil {
-                    println("Auth error: \(error.localizedDescription)")
-                    return
-                }
-                
-                self.playUsingSession(session)
-            })
-            
-            return true
+        if url.scheme == "harmonize-login" {
+            return authenticateWithURL(url)
         }
         
         return false
-    }
-    
-    func playUsingSession(session: SPTSession) {
-        if spotifyPlayer == nil {
-            spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
-        }
-        
-        spotifyPlayer.loginWithSession(session, callback: { (error) -> Void in
-            if error != nil {
-                println("Enabling playback got error: \(error.localizedDescription)")
-                return
-            }
-            
-            SPTRequest.requestItemAtURI(NSURL(string: "spotify:album:4L1HDyfdGIkACuygktO7T7"), withSession: nil, callback: { (error, album) -> Void in
-                if error != nil {
-                    println("Album lookup got error: \(error.localizedDescription)")
-                }
-                
-                spotifyPlayer.playTrackProvider(album as SPTTrackProvider, callback: nil)
-            })
-        })
     }
 }

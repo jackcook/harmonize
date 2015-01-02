@@ -7,3 +7,6 @@
 //
 
 #import <Spotify/Spotify.h>
+
+#import "SCSoundCloud.h"
+#import "SCUI.h"
