@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		EB4C0F841A56515E0004A3D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C0F831A56515E0004A3D7 /* AppDelegate.swift */; };
-		EB4C0F861A56515E0004A3D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C0F851A56515E0004A3D7 /* ViewController.swift */; };
 		EB4C0F891A56515E0004A3D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4C0F871A56515E0004A3D7 /* Main.storyboard */; };
 		EB4C0F8B1A56515E0004A3D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB4C0F8A1A56515E0004A3D7 /* Images.xcassets */; };
 		EB4C0F8E1A56515E0004A3D7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4C0F8C1A56515E0004A3D7 /* LaunchScreen.xib */; };
 		EB4C0F9A1A56515E0004A3D7 /* HarmonizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C0F991A56515E0004A3D7 /* HarmonizeTests.swift */; };
+		EB4C0FA41A565F8B0004A3D7 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4C0FA31A565F8B0004A3D7 /* Spotify.framework */; };
+		EB4C0FA61A565F980004A3D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4C0FA51A565F980004A3D7 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,15 @@
 		EB4C0F7E1A56515E0004A3D7 /* Harmonize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Harmonize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4C0F821A56515E0004A3D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB4C0F831A56515E0004A3D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB4C0F851A56515E0004A3D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB4C0F881A56515E0004A3D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB4C0F8A1A56515E0004A3D7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EB4C0F8D1A56515E0004A3D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		EB4C0F931A56515E0004A3D7 /* HarmonizeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarmonizeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4C0F981A56515E0004A3D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB4C0F991A56515E0004A3D7 /* HarmonizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeTests.swift; sourceTree = "<group>"; };
+		EB4C0FA31A565F8B0004A3D7 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		EB4C0FA51A565F980004A3D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EB4C0FA81A565FB70004A3D7 /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4C0FA61A565F980004A3D7 /* AVFoundation.framework in Frameworks */,
+				EB4C0FA41A565F8B0004A3D7 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +64,8 @@
 		EB4C0F751A56515E0004A3D7 = {
 			isa = PBXGroup;
 			children = (
+				EB4C0FA51A565F980004A3D7 /* AVFoundation.framework */,
+				EB4C0FA31A565F8B0004A3D7 /* Spotify.framework */,
 				EB4C0F801A56515E0004A3D7 /* Harmonize */,
 				EB4C0F961A56515E0004A3D7 /* HarmonizeTests */,
 				EB4C0F7F1A56515E0004A3D7 /* Products */,
@@ -77,8 +84,8 @@
 		EB4C0F801A56515E0004A3D7 /* Harmonize */ = {
 			isa = PBXGroup;
 			children = (
+				EB4C0FA71A565FAE0004A3D7 /* util */,
 				EB4C0F831A56515E0004A3D7 /* AppDelegate.swift */,
-				EB4C0F851A56515E0004A3D7 /* ViewController.swift */,
 				EB4C0F871A56515E0004A3D7 /* Main.storyboard */,
 				EB4C0F8A1A56515E0004A3D7 /* Images.xcassets */,
 				EB4C0F8C1A56515E0004A3D7 /* LaunchScreen.xib */,
@@ -110,6 +117,14 @@
 				EB4C0F981A56515E0004A3D7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EB4C0FA71A565FAE0004A3D7 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				EB4C0FA81A565FB70004A3D7 /* ObjectiveBridge.h */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,7 +227,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB4C0F861A56515E0004A3D7 /* ViewController.swift in Sources */,
 				EB4C0F841A56515E0004A3D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,9 +350,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Harmonize/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Harmonize/util/ObjectiveBridge.h;
 			};
 			name = Debug;
 		};
@@ -346,9 +366,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Harmonize/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Harmonize/util/ObjectiveBridge.h;
 			};
 			name = Release;
 		};
