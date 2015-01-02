@@ -7,6 +7,7 @@
 //
 
 import AVFoundation
+import MediaPlayer
 
 func authenticateWithURL(url: NSURL) -> Bool {
     switch url.host! {
@@ -78,4 +79,8 @@ func authenticateRdio() {
     rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
     rdioPlayer.preparePlayerWithDelegate(nil)
     rdioPlayer.player.playSource("t1")
+    
+    UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+    let currentlyPlayingTrackInfo = [MPMediaItemPropertyTitle: "Life, the Universe and Everything", MPMediaItemPropertyPlaybackDuration: 42]
+    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = currentlyPlayingTrackInfo
 }
