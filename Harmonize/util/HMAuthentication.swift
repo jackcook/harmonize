@@ -22,8 +22,9 @@ func authenticateWithURL(url: NSURL) -> Bool {
 }
 
 let spotifyClientID = "b773cebaa2cb4c86b5e49464cd5d4f25"
-let spotifyCallbackURL = "harmonize-login://callback"
+let spotifyCallbackURL = "harmonize-login://spotify"
 let spotifyTokenSwapURL = "http://harmonize.co:1234/swap"
+var spotifyAuthenticated = false
 
 func authenticateSpotify(url: NSURL) -> Bool {
     if SPTAuth.defaultInstance().canHandleURL(url, withDeclaredRedirectURL: NSURL(string: spotifyCallbackURL)) {
@@ -33,19 +34,23 @@ func authenticateSpotify(url: NSURL) -> Bool {
                 return
             }
             
-            println("Spotify authenticated successfully!")
+            spotifySession = session
+            spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
+            
+            spotifyPlayer.loginWithSession(spotifySession, callback: nil)
         })
         
-        return true
+        spotifyAuthenticated = true
     }
     
-    return false
+    return spotifyAuthenticated
 }
 
 let soundCloudClientID = "baf7155dfc93f3df6428d89a64bf5a75"
 let soundCloudClientSecret = "3cd41889ed08ab4eda39156c21ee539f"
 let soundCloudCallbackURL = "harmonize-login://soundcloud"
 var soundCloudOAuthToken = ""
+var soundCloudAuthenticated = false
 
 func authenticateSoundCloud(code: String) -> Bool {
     let authURL = NSURL(string: "https://api.soundcloud.com/oauth2/token")
@@ -63,24 +68,18 @@ func authenticateSoundCloud(code: String) -> Bool {
     if let resultJSON = NSJSONSerialization.JSONObjectWithData(returnData, options: .MutableContainers, error: nil) as? NSDictionary {
         if let accessToken = resultJSON["access_token"] as? String {
             soundCloudOAuthToken = accessToken
-            
-            println("SoundCloud authenticated successfully!")
-            return true
+            soundCloudAuthenticated = true
         }
     }
     
-    return false
+    return soundCloudAuthenticated
 }
 
 let rdioConsumerKey = "2cb63333mevn8gaet83g82mg"
 let rdioSharedSecret = "wtcRmU4Zqr"
+var rdioAuthenticated = true
 
-func authenticateRdio() {
+func authenticateRdio() -> Bool {
     rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
-    rdioPlayer.preparePlayerWithDelegate(nil)
-    rdioPlayer.player.playSource("t1")
-    
-    UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
-    let currentlyPlayingTrackInfo = [MPMediaItemPropertyTitle: "Life, the Universe and Everything", MPMediaItemPropertyPlaybackDuration: 42]
-    MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = currentlyPlayingTrackInfo
+    return rdioAuthenticated
 }

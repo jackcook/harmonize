@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5353D35BA88BAE773D0106BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A62D6E2202C7ED51E41CBC1 /* libPods.a */; };
+		EB0B0F001A57353E00550B34 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */; };
 		EB1F549D1A5702230098A956 /* HMAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1F549C1A5702230098A956 /* HMAuthentication.swift */; };
 		EB1F54A11A571CDE0098A956 /* Rdio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB1F549F1A571CDE0098A956 /* Rdio.framework */; };
 		EB1F54A21A571CDE0098A956 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB1F54A01A571CDE0098A956 /* Spotify.framework */; };
@@ -35,6 +36,7 @@
 		2F9BEB58177566A8750E62E3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B6151C418185BD78A6E6750 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A62D6E2202C7ED51E41CBC1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		EB1F549C1A5702230098A956 /* HMAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAuthentication.swift; sourceTree = "<group>"; };
 		EB1F549F1A571CDE0098A956 /* Rdio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rdio.framework; sourceTree = "<group>"; };
 		EB1F54A01A571CDE0098A956 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				EB4C0FAA1A5660D10004A3D7 /* HarmonizeViewController.swift */,
+				EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				EB4C0FAD1A5660E90004A3D7 /* Common.swift in Sources */,
 				EB1F549D1A5702230098A956 /* HMAuthentication.swift in Sources */,
 				EB4C0F841A56515E0004A3D7 /* AppDelegate.swift in Sources */,
+				EB0B0F001A57353E00550B34 /* NowPlayingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

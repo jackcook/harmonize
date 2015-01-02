@@ -10,19 +10,12 @@ import UIKit
 
 class HarmonizeViewController: UIViewController {
     
+    var nowPlayingView: NowPlayingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*SCSoundCloud.setClientID(soundCloudClientID, secret: soundCloudClientSecret, redirectURL: NSURL(string: soundCloudCallbackURL))
-        
-        SCSoundCloud.requestAccessWithPreparedAuthorizationURLHandler { (preparedURL) -> Void in
-            let loginViewController = SCLoginViewController(preparedURL: preparedURL, completionHandler: { (error) -> Void in
-                if error != nil {
-                    println("\(error.localizedDescription)")
-                }
-            })
-            
-            self.presentViewController(loginViewController, animated: true, completion: nil)
-        }*/
+        nowPlayingView = NowPlayingView()
+        self.view.addSubview(nowPlayingView)
     }
 }
