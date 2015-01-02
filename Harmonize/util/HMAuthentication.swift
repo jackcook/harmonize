@@ -62,20 +62,20 @@ func authenticateSoundCloud(code: String) -> Bool {
     if let resultJSON = NSJSONSerialization.JSONObjectWithData(returnData, options: .MutableContainers, error: nil) as? NSDictionary {
         if let accessToken = resultJSON["access_token"] as? String {
             soundCloudOAuthToken = accessToken
-            downloadTrackData(170037930)
+            
+            println("SoundCloud authenticated successfully!")
+            return true
         }
     }
     
     return false
 }
 
-var player: AVAudioPlayer!
+let rdioConsumerKey = "2cb63333mevn8gaet83g82mg"
+let rdioSharedSecret = "wtcRmU4Zqr"
 
-func downloadTrackData(trackID: Int) {
-    let contentURL = NSURL(string: "https://api.soundcloud.com/tracks/\(trackID)/stream?client_id=\(soundCloudClientID)")!
-    let data = NSData(contentsOfURL: contentURL)!
-    
-    player = AVAudioPlayer(data: data, error: nil)
-    player.prepareToPlay()
-    player.play()
+func authenticateRdio() {
+    rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
+    rdioPlayer.preparePlayerWithDelegate(nil)
+    rdioPlayer.player.playSource("t1")
 }

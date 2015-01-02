@@ -8,3 +8,5 @@
 
 var spotifySession: SPTSession!
 var spotifyPlayer: SPTAudioStreamingController!
+
+var rdioPlayer: Rdio!

@@ -23,10 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var timer = NSTimer(timeInterval: 0.1, target: self, selector: "spotifyLogin", userInfo: nil, repeats: true)
         timer.fire()*/
         
-        soundCloudLoginURL = NSURL(string: "https://soundcloud.com/connect?client_id=\(soundCloudClientID)&response_type=code&redirect_uri=\(soundCloudCallbackURL)")
+        /*soundCloudLoginURL = NSURL(string: "https://soundcloud.com/connect?client_id=\(soundCloudClientID)&response_type=code&redirect_uri=\(soundCloudCallbackURL)")
         
         var timer = NSTimer(timeInterval: 0.1, target: self, selector: "soundCloudLogin", userInfo: nil, repeats: true)
-        timer.fire()
+        timer.fire()*/
+        
+        authenticateRdio()
         
         return true
     }
