@@ -18,11 +18,12 @@ class HarmonizeViewController: UIViewController {
         
         loadingView = LoadingView()
         loadingView.viewController = self
-        self.view.addSubview(loadingView)
+        //self.view.addSubview(loadingView)
         
         nowPlayingView = NowPlayingView()
-        nowPlayingView.alpha = 0
-        self.view.insertSubview(nowPlayingView, belowSubview: loadingView)
+        //nowPlayingView.alpha = 0
+        //self.view.insertSubview(nowPlayingView, belowSubview: loadingView)
+        self.view.addSubview(nowPlayingView)
     }
     
     func loadingDone() {
@@ -30,5 +31,9 @@ class HarmonizeViewController: UIViewController {
             self.loadingView.alpha = 0
             self.nowPlayingView.alpha = 1
         })
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }
