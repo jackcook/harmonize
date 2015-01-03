@@ -323,7 +323,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Provided by Spotify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2i-9d-vOU">
                                 <rect key="frame" x="16" y="559" width="568" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="1St-zt-LKi"/>
                                     <constraint firstAttribute="height" constant="20" id="oHj-Gl-o6e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
@@ -336,7 +335,6 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <exclude reference="1St-zt-LKi"/>
                                         <include reference="oHj-Gl-o6e"/>
                                     </mask>
                                 </variation>
