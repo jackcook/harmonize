@@ -13,7 +13,13 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        if NSUserDefaults.standardUserDefaults().objectForKey("spotifySession") != nil {
+            authenticateSpotify()
+        } else {
+            let spotifyAuth = SPTAuth.defaultInstance()
+            let spotifyLoginURL = spotifyAuth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope])
+            UIApplication.sharedApplication().openURL(spotifyLoginURL)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

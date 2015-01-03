@@ -10,3 +10,4 @@
 #import <Rdio/Rdio.h>
 
 #import "FLAnimatedImage.h"
+#import "SSKeychain.h"

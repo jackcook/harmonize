@@ -668,7 +668,7 @@
                         <outlet property="albumTitle" destination="RCo-ML-BjZ" id="qlX-1j-u8a"/>
                         <outlet property="coverImage" destination="swh-4s-pFe" id="yKz-im-cc5"/>
                         <outlet property="currentTime" destination="aW0-Zw-V1L" id="Oxs-DH-Tri"/>
-                        <outlet property="progressBar" destination="0bQ-vM-gBq" id="xaQ-O3-bL6"/>
+                        <outlet property="progressBarLeft" destination="jeF-PI-RKo" id="hBJ-bi-JMe"/>
                         <outlet property="songTitle" destination="hW7-1N-URc" id="BRl-Mb-8dA"/>
                         <outlet property="sourceLabel" destination="m2i-9d-vOU" id="kdt-1Y-5h8"/>
                         <outlet property="totalTime" destination="Q0n-gP-NtS" id="JWl-Pi-9Nn"/>

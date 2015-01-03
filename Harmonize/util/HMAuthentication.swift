@@ -12,9 +12,9 @@ import MediaPlayer
 func authenticateWithURL(url: NSURL) -> Bool {
     switch url.host! {
     case "spotify":
-        return authenticateSpotify(url)
+        return authenticateSpotifyWithURL(url)
     case "soundcloud":
-        return authenticateSoundCloud(url.query!.componentsSeparatedByString("=")[1])
+        return authenticateSoundCloudWithURL(url.query!.componentsSeparatedByString("=")[1])
     default:
         println("Error authenticating service: \(url.host!)")
         return false
@@ -24,15 +24,39 @@ func authenticateWithURL(url: NSURL) -> Bool {
 let spotifyClientID = "b773cebaa2cb4c86b5e49464cd5d4f25"
 let spotifyCallbackURL = "harmonize-login://spotify"
 let spotifyTokenSwapURL = "http://harmonize.co:1234/swap"
+let spotifyTokenRefreshURL = "http://harmonize.co:1234/refresh"
 var spotifyAuthenticated = false
 
-func authenticateSpotify(url: NSURL) -> Bool {
+func authenticateSpotify() {
+    let sessionData = NSUserDefaults.standardUserDefaults().objectForKey("spotifySession") as NSData
+    let session = NSKeyedUnarchiver.unarchiveObjectWithData(sessionData) as SPTSession
+    
+    SPTAuth.defaultInstance().renewSession(session, withServiceEndpointAtURL: NSURL(string: spotifyTokenRefreshURL)) { (error, session) -> Void in
+        if error != nil {
+            println("Auth error: \(error.localizedDescription)")
+            return
+        }
+        
+        let sessionData = NSKeyedArchiver.archivedDataWithRootObject(session)
+        NSUserDefaults.standardUserDefaults().setObject(sessionData, forKey: "spotifySession")
+        
+        spotifySession = session
+        spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
+        
+        spotifyPlayer.loginWithSession(spotifySession, callback: nil)
+    }
+}
+
+func authenticateSpotifyWithURL(url: NSURL) -> Bool {
     if SPTAuth.defaultInstance().canHandleURL(url, withDeclaredRedirectURL: NSURL(string: spotifyCallbackURL)) {
         SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, tokenSwapServiceEndpointAtURL: NSURL(string: spotifyTokenSwapURL), callback: { (error, session) -> Void in
             if error != nil {
-                println("Auth error: \(error.localizedDescription)")
+                println("Auth from url error: \(error.localizedDescription)")
                 return
             }
+            
+            let sessionData = NSKeyedArchiver.archivedDataWithRootObject(session)
+            NSUserDefaults.standardUserDefaults().setObject(sessionData, forKey: "spotifySession")
             
             spotifySession = session
             spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
@@ -52,7 +76,7 @@ let soundCloudCallbackURL = "harmonize-login://soundcloud"
 var soundCloudOAuthToken = ""
 var soundCloudAuthenticated = false
 
-func authenticateSoundCloud(code: String) -> Bool {
+func authenticateSoundCloudWithURL(code: String) -> Bool {
     let authURL = NSURL(string: "https://api.soundcloud.com/oauth2/token")
     let postString = "client_id=\(soundCloudClientID)&client_secret=\(soundCloudClientSecret)&grant_type=authorization_code&redirect_uri=\(soundCloudCallbackURL)&code=\(code)"
     let postData = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
