@@ -10,6 +10,8 @@
 		5353D35BA88BAE773D0106BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A62D6E2202C7ED51E41CBC1 /* libPods.a */; };
 		EB0B0F001A57353E00550B34 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */; };
 		EB0B0F021A573B6700550B34 /* Mozart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B0F011A573B6700550B34 /* Mozart.swift */; };
+		EB1C02311A583FE700D14C8E /* PlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C02301A583FE700D14C8E /* PlayingViewController.swift */; };
+		EB1C02331A5841B400D14C8E /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1C02321A5841B400D14C8E /* test.png */; };
 		EB1F549D1A5702230098A956 /* HMAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1F549C1A5702230098A956 /* HMAuthentication.swift */; };
 		EB1F54A11A571CDE0098A956 /* Rdio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB1F549F1A571CDE0098A956 /* Rdio.framework */; };
 		EB1F54A21A571CDE0098A956 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB1F54A01A571CDE0098A956 /* Spotify.framework */; };
@@ -56,6 +58,8 @@
 		7A62D6E2202C7ED51E41CBC1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		EB0B0F011A573B6700550B34 /* Mozart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mozart.swift; sourceTree = "<group>"; };
+		EB1C02301A583FE700D14C8E /* PlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingViewController.swift; sourceTree = "<group>"; };
+		EB1C02321A5841B400D14C8E /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		EB1F549C1A5702230098A956 /* HMAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAuthentication.swift; sourceTree = "<group>"; };
 		EB1F549F1A571CDE0098A956 /* Rdio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rdio.framework; sourceTree = "<group>"; };
 		EB1F54A01A571CDE0098A956 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		EB209EED1A579A7200E46659 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				EB1C02321A5841B400D14C8E /* test.png */,
 				EB5DE1731A57B36000F556D7 /* background01.png */,
 				EB5DE1711A57B24E00F556D7 /* loading.gif */,
 				EB209EEE1A579A7200E46659 /* image01.png */,
@@ -241,6 +246,7 @@
 				EB4C0FAA1A5660D10004A3D7 /* HarmonizeViewController.swift */,
 				EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */,
 				EB5DE16F1A57AD3200F556D7 /* LoadingView.swift */,
+				EB1C02301A583FE700D14C8E /* PlayingViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 				EB5DE1821A57BF4C00F556D7 /* image06.png in Resources */,
 				EB5DE1841A57BF4C00F556D7 /* image08.png in Resources */,
 				EB5DE1881A57BF4C00F556D7 /* image12.png in Resources */,
+				EB1C02331A5841B400D14C8E /* test.png in Resources */,
 				EB5DE1861A57BF4C00F556D7 /* image10.png in Resources */,
 				EB5DE1741A57B36000F556D7 /* background01.png in Resources */,
 				EB5DE1721A57B24E00F556D7 /* loading.gif in Resources */,
@@ -396,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1C02311A583FE700D14C8E /* PlayingViewController.swift in Sources */,
 				EB4C0FAB1A5660D10004A3D7 /* HarmonizeViewController.swift in Sources */,
 				EB4C0FAD1A5660E90004A3D7 /* Common.swift in Sources */,
 				EB0B0F021A573B6700550B34 /* Mozart.swift in Sources */,
