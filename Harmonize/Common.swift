@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
+let deviceSize = UIScreen.mainScreen().bounds
+
 var spotifySession: SPTSession!
 var spotifyPlayer: SPTAudioStreamingController!
 

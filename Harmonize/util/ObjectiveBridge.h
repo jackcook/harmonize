@@ -8,3 +8,5 @@
 
 #import <Spotify/Spotify.h>
 #import <Rdio/Rdio.h>
+
+#import "FLAnimatedImage.h"

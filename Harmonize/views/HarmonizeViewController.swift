@@ -10,12 +10,25 @@ import UIKit
 
 class HarmonizeViewController: UIViewController {
     
+    var loadingView: LoadingView!
     var nowPlayingView: NowPlayingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadingView = LoadingView()
+        loadingView.viewController = self
+        self.view.addSubview(loadingView)
+        
         nowPlayingView = NowPlayingView()
-        self.view.addSubview(nowPlayingView)
+        nowPlayingView.alpha = 0
+        self.view.insertSubview(nowPlayingView, belowSubview: loadingView)
+    }
+    
+    func loadingDone() {
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.loadingView.alpha = 0
+            self.nowPlayingView.alpha = 1
+        })
     }
 }
