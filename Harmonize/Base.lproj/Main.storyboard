@@ -6,6 +6,60 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Loading View Controller-->
+        <scene sceneID="39P-2c-hsB">
+            <objects>
+                <viewController id="b9e-Ma-AMB" customClass="LoadingViewController" customModule="Harmonize" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t82-Mh-rMv"/>
+                        <viewControllerLayoutGuide type="bottom" id="htR-pV-VTs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N2v-Rr-6I3">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background01.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gso-3G-et7">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Gso-3G-et7" secondAttribute="trailing" id="2dX-1Y-I9R"/>
+                            <constraint firstItem="Gso-3G-et7" firstAttribute="leading" secondItem="N2v-Rr-6I3" secondAttribute="leading" id="MQA-AN-UKp"/>
+                            <constraint firstItem="htR-pV-VTs" firstAttribute="top" secondItem="Gso-3G-et7" secondAttribute="bottom" id="oad-Wn-rLN"/>
+                            <constraint firstItem="Gso-3G-et7" firstAttribute="top" secondItem="t82-Mh-rMv" secondAttribute="bottom" id="r3H-w1-Bjq"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Gso-3G-et7"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="2dX-1Y-I9R"/>
+                                <exclude reference="MQA-AN-UKp"/>
+                                <exclude reference="r3H-w1-Bjq"/>
+                                <exclude reference="oad-Wn-rLN"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="Gso-3G-et7"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="2dX-1Y-I9R"/>
+                                <include reference="MQA-AN-UKp"/>
+                                <include reference="r3H-w1-Bjq"/>
+                                <include reference="oad-Wn-rLN"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dgp-1X-Gg9"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="browseSegue" id="0Nh-6Z-ZDt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4fJ-v9-NSo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="135.75"/>
+        </scene>
         <!--Playing View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -618,7 +672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696.5" y="135.75"/>
+            <point key="canvasLocation" x="2443.5" y="135.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="raj-qO-oSD">
@@ -633,7 +687,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Phx-Pv-zOc"/>
+                        <segue destination="b9e-Ma-AMB" kind="relationship" relationship="rootViewController" id="HKq-Pb-xBx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCZ-Oj-Oj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -642,6 +696,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="background01.png" width="1242" height="2208"/>
         <image name="image05.png" width="42" height="64"/>
         <image name="image06.png" width="15" height="63"/>
         <image name="image07.png" width="101" height="71"/>

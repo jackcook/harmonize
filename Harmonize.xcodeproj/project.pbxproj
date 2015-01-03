@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5353D35BA88BAE773D0106BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A62D6E2202C7ED51E41CBC1 /* libPods.a */; };
-		EB0B0F001A57353E00550B34 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */; };
 		EB0B0F021A573B6700550B34 /* Mozart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0B0F011A573B6700550B34 /* Mozart.swift */; };
 		EB1C02311A583FE700D14C8E /* PlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1C02301A583FE700D14C8E /* PlayingViewController.swift */; };
 		EB1C02331A5841B400D14C8E /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1C02321A5841B400D14C8E /* test.png */; };
@@ -24,9 +23,7 @@
 		EB4C0F8E1A56515E0004A3D7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB4C0F8C1A56515E0004A3D7 /* LaunchScreen.xib */; };
 		EB4C0F9A1A56515E0004A3D7 /* HarmonizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C0F991A56515E0004A3D7 /* HarmonizeTests.swift */; };
 		EB4C0FA61A565F980004A3D7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4C0FA51A565F980004A3D7 /* AVFoundation.framework */; };
-		EB4C0FAB1A5660D10004A3D7 /* HarmonizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C0FAA1A5660D10004A3D7 /* HarmonizeViewController.swift */; };
 		EB4C0FAD1A5660E90004A3D7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4C0FAC1A5660E90004A3D7 /* Common.swift */; };
-		EB5DE1701A57AD3200F556D7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5DE16F1A57AD3200F556D7 /* LoadingView.swift */; };
 		EB5DE1721A57B24E00F556D7 /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = EB5DE1711A57B24E00F556D7 /* loading.gif */; };
 		EB5DE1741A57B36000F556D7 /* background01.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5DE1731A57B36000F556D7 /* background01.png */; };
 		EB5DE1801A57BF4C00F556D7 /* image04.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5DE1751A57BF4C00F556D7 /* image04.png */; };
@@ -40,6 +37,7 @@
 		EB5DE1881A57BF4C00F556D7 /* image12.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5DE17D1A57BF4C00F556D7 /* image12.png */; };
 		EB5DE1891A57BF4C00F556D7 /* image13.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5DE17E1A57BF4C00F556D7 /* image13.png */; };
 		EB5DE18A1A57BF4C00F556D7 /* image14.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5DE17F1A57BF4C00F556D7 /* image14.png */; };
+		EBC58B951A586561002543BD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC58B941A586561002543BD /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +54,6 @@
 		2F9BEB58177566A8750E62E3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B6151C418185BD78A6E6750 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A62D6E2202C7ED51E41CBC1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		EB0B0F011A573B6700550B34 /* Mozart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mozart.swift; sourceTree = "<group>"; };
 		EB1C02301A583FE700D14C8E /* PlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingViewController.swift; sourceTree = "<group>"; };
 		EB1C02321A5841B400D14C8E /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
@@ -77,9 +74,7 @@
 		EB4C0F991A56515E0004A3D7 /* HarmonizeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonizeTests.swift; sourceTree = "<group>"; };
 		EB4C0FA51A565F980004A3D7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EB4C0FA81A565FB70004A3D7 /* ObjectiveBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveBridge.h; sourceTree = "<group>"; };
-		EB4C0FAA1A5660D10004A3D7 /* HarmonizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonizeViewController.swift; sourceTree = "<group>"; };
 		EB4C0FAC1A5660E90004A3D7 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		EB5DE16F1A57AD3200F556D7 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		EB5DE1711A57B24E00F556D7 /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
 		EB5DE1731A57B36000F556D7 /* background01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background01.png; sourceTree = "<group>"; };
 		EB5DE1751A57BF4C00F556D7 /* image04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image04.png; sourceTree = "<group>"; };
@@ -93,6 +88,7 @@
 		EB5DE17D1A57BF4C00F556D7 /* image12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image12.png; sourceTree = "<group>"; };
 		EB5DE17E1A57BF4C00F556D7 /* image13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image13.png; sourceTree = "<group>"; };
 		EB5DE17F1A57BF4C00F556D7 /* image14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image14.png; sourceTree = "<group>"; };
+		EBC58B941A586561002543BD /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,10 +239,8 @@
 		EB4C0FA91A5660C30004A3D7 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				EB4C0FAA1A5660D10004A3D7 /* HarmonizeViewController.swift */,
-				EB0B0EFF1A57353E00550B34 /* NowPlayingView.swift */,
-				EB5DE16F1A57AD3200F556D7 /* LoadingView.swift */,
 				EB1C02301A583FE700D14C8E /* PlayingViewController.swift */,
+				EBC58B941A586561002543BD /* LoadingViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -404,13 +398,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1C02311A583FE700D14C8E /* PlayingViewController.swift in Sources */,
-				EB4C0FAB1A5660D10004A3D7 /* HarmonizeViewController.swift in Sources */,
 				EB4C0FAD1A5660E90004A3D7 /* Common.swift in Sources */,
 				EB0B0F021A573B6700550B34 /* Mozart.swift in Sources */,
 				EB1F549D1A5702230098A956 /* HMAuthentication.swift in Sources */,
+				EBC58B951A586561002543BD /* LoadingViewController.swift in Sources */,
 				EB4C0F841A56515E0004A3D7 /* AppDelegate.swift in Sources */,
-				EB5DE1701A57AD3200F556D7 /* LoadingView.swift in Sources */,
-				EB0B0F001A57353E00550B34 /* NowPlayingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
