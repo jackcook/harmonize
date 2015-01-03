@@ -77,9 +77,10 @@ func authenticateSoundCloud(code: String) -> Bool {
 
 let rdioConsumerKey = "2cb63333mevn8gaet83g82mg"
 let rdioSharedSecret = "wtcRmU4Zqr"
-var rdioAuthenticated = true
+var rdioAuthenticated = false
 
 func authenticateRdio() -> Bool {
     rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
+    rdioAuthenticated = true
     return rdioAuthenticated
 }
