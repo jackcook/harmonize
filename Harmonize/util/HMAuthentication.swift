@@ -14,7 +14,7 @@ func authenticateWithURL(url: NSURL) -> Bool {
     case "spotify":
         return authenticateSpotifyWithURL(url)
     case "soundcloud":
-        return authenticateSoundCloudWithURL(url.query!.componentsSeparatedByString("=")[1])
+        return authenticateSoundCloudWithCode(url.query!.componentsSeparatedByString("=")[1])
     default:
         println("Error authenticating service: \(url.host!)")
         return false
@@ -73,17 +73,18 @@ func authenticateSpotifyWithURL(url: NSURL) -> Bool {
 let soundCloudClientID = "baf7155dfc93f3df6428d89a64bf5a75"
 let soundCloudClientSecret = "3cd41889ed08ab4eda39156c21ee539f"
 let soundCloudCallbackURL = "harmonize-login://soundcloud"
-var soundCloudOAuthToken = ""
+var soundCloudAccessToken = ""
 var soundCloudAuthenticated = false
 
-func authenticateSoundCloudWithURL(code: String) -> Bool {
-    let authURL = NSURL(string: "https://api.soundcloud.com/oauth2/token")
-    let postString = "client_id=\(soundCloudClientID)&client_secret=\(soundCloudClientSecret)&grant_type=authorization_code&redirect_uri=\(soundCloudCallbackURL)&code=\(code)"
-    let postData = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+func authenticateSoundCloud() {
+    let authURL = NSURL(string: "https://api.soundcloud.com/oauth2/token")!
+    let refreshToken = SSKeychain.passwordForService("harmonize", account: "soundcloud")
+    let postString = "client_id=\(soundCloudClientID)&client_secret=\(soundCloudClientSecret)&grant_type=refresh_token&refresh_token=\(refreshToken)"
+    let postData = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
     
-    let request = NSMutableURLRequest(URL: authURL!)
+    let request = NSMutableURLRequest(URL: authURL)
     request.HTTPMethod = "POST"
-    request.setValue("\(postData!.length)", forHTTPHeaderField: "Content-Length")
+    request.setValue("\(postData.length)", forHTTPHeaderField: "Content-Length")
     request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
     request.HTTPBody = postData
     
@@ -91,8 +92,37 @@ func authenticateSoundCloudWithURL(code: String) -> Bool {
     
     if let resultJSON = NSJSONSerialization.JSONObjectWithData(returnData, options: .MutableContainers, error: nil) as? NSDictionary {
         if let accessToken = resultJSON["access_token"] as? String {
-            soundCloudOAuthToken = accessToken
-            soundCloudAuthenticated = true
+            if let refreshToken = resultJSON["refresh_token"] as? String {
+                SSKeychain.setPassword(refreshToken, forService: "harmonize", account: "soundcloud")
+                
+                soundCloudAccessToken = accessToken
+                soundCloudAuthenticated = true
+            }
+        }
+    }
+}
+
+func authenticateSoundCloudWithCode(code: String) -> Bool {
+    let authURL = NSURL(string: "https://api.soundcloud.com/oauth2/token")!
+    let postString = "client_id=\(soundCloudClientID)&client_secret=\(soundCloudClientSecret)&grant_type=authorization_code&redirect_uri=\(soundCloudCallbackURL)&code=\(code)"
+    let postData = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!
+    
+    let request = NSMutableURLRequest(URL: authURL)
+    request.HTTPMethod = "POST"
+    request.setValue("\(postData.length)", forHTTPHeaderField: "Content-Length")
+    request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
+    request.HTTPBody = postData
+    
+    let returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)!
+    
+    if let resultJSON = NSJSONSerialization.JSONObjectWithData(returnData, options: .MutableContainers, error: nil) as? NSDictionary {
+        if let accessToken = resultJSON["access_token"] as? String {
+            if let refreshToken = resultJSON["refresh_token"] as? String {
+                SSKeychain.setPassword(refreshToken, forService: "harmonize", account: "soundcloud")
+                
+                soundCloudAccessToken = accessToken
+                soundCloudAuthenticated = true
+            }
         }
     }
     

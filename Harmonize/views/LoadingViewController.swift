@@ -20,6 +20,13 @@ class LoadingViewController: UIViewController {
             let spotifyLoginURL = spotifyAuth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope])
             UIApplication.sharedApplication().openURL(spotifyLoginURL)
         }
+        
+        if SSKeychain.passwordForService("harmonize", account: "soundcloud") != nil {
+            authenticateSoundCloud()
+        } else {
+            let soundCloudLoginURL = NSURL(string: "https://soundcloud.com/connect?client_id=\(soundCloudClientID)&response_type=code&redirect_uri=\(soundCloudCallbackURL)")!
+            //UIApplication.sharedApplication().openURL(soundCloudLoginURL)
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
