@@ -1,12 +1,12 @@
 //
-//  PlayingViewController.swift
+//  TrackViewController.swift
 //  Harmonize
 //
 //  Created by Jack Cook on 1/3/15.
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
-class PlayingViewController: UIViewController {
+class TrackViewController: UIViewController {
     
     @IBOutlet var coverImage: UIImageView!
     
@@ -19,6 +19,8 @@ class PlayingViewController: UIViewController {
     
     @IBOutlet var sourceLabel: UILabel!
     
+    var track: SPTTrack!
+    
     var paused = false
     var total = 0
     
@@ -27,30 +29,27 @@ class PlayingViewController: UIViewController {
         
         coverImage.clipsToBounds = true
         
-        SPTTrack.trackWithURI(NSURL(string: "spotify:track:2IWw5tDMzgtUyAT4EwKAYW"), session: spotifySession) { (error, track) -> Void in
-            let t = track as SPTTrack
-            self.total = Int(t.duration)
-            
-            var mins = 0
-            var secs = self.total
-            
-            while secs >= 60 {
-                secs -= 60
-                mins += 1
-            }
-            
-            let secstr = NSString(format: "%02d", secs)
-            self.totalTime.text = "\(mins):\(secstr)"
-            
-            self.albumTitle.text = "\(t.artists[0].name) – \(t.album.name)"
-            self.songTitle.text = t.name
-            Mozart().load(t.album.largestCover.imageURL.absoluteString!).into(self.coverImage)
-            
-            spotifyPlayer.playTrackProvider(track as SPTTrack, callback: nil)
-            
-            let timer = NSTimer(timeInterval: 0.25, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        self.total = Int(track.duration)
+        
+        var mins = 0
+        var secs = self.total
+        
+        while secs >= 60 {
+            secs -= 60
+            mins += 1
         }
+        
+        let secstr = NSString(format: "%02d", secs)
+        self.totalTime.text = "\(mins):\(secstr)"
+        
+        self.albumTitle.text = "\(track.artists[0].name) – \(track.album.name)"
+        self.songTitle.text = track.name
+        Mozart().load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage)
+        
+        spotifyPlayer.playTrackProvider(track, callback: nil)
+        
+        let timer = NSTimer(timeInterval: 0.25, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
     
     func updateTime() {
@@ -71,6 +70,7 @@ class PlayingViewController: UIViewController {
     }
     
     @IBAction func backButton(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func optionsButton(sender: AnyObject) {

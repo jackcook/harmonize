@@ -23,6 +23,8 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     var laidOut = false
     
+    var trackToSend: SPTTrack!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +36,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         
         albums = [SPTAlbum]()
         
-        SPTArtist.artistWithURI(NSURL(string: "spotify:artist:1vCWHaC5f2uS3yhpwWbIA6"), session: spotifySession) { (error, artist) -> Void in
+        SPTArtist.artistWithURI(NSURL(string: "spotify:artist:3sS2Q1UZuUXL7TZSbQumDI"), session: spotifySession) { (error, artist) -> Void in
             let a = artist as SPTArtist
             Mozart().load(a.largestImage.imageURL.absoluteString!).into(self.artistImage)
             self.artistName.text = a.name
@@ -128,6 +130,11 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
         
+        var backView = UIView(frame: cell.frame)
+        backView.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+        
+        cell.selectedBackgroundView = backView
+        
         var numLabel = UILabel()
         numLabel.text = "\(indexPath.row + 1)"
         numLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1)
@@ -174,6 +181,20 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 48
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            trackToSend = topTracks[indexPath.row]
+            self.performSegueWithIdentifier("songSegue", sender: self)
+        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var pvc = segue.destinationViewController as TrackViewController
+        pvc.track = trackToSend
     }
     
     override func prefersStatusBarHidden() -> Bool {
