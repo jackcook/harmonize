@@ -764,7 +764,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h6F-Ax-FzR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="h6F-Ax-FzR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1029,6 +1029,7 @@
                         <outlet property="artistFollowers" destination="0CF-jv-QIj" id="wB3-MK-FMH"/>
                         <outlet property="artistImage" destination="7aS-5K-3aS" id="Do1-HQ-Yzc"/>
                         <outlet property="artistName" destination="RGr-7y-mAz" id="MGw-Oc-BDS"/>
+                        <outlet property="tableView" destination="h6F-Ax-FzR" id="UiT-Ci-rDv"/>
                         <segue destination="vXZ-lx-hvc" kind="show" identifier="songSegue" id="cgh-oa-bV5"/>
                     </connections>
                 </viewController>
