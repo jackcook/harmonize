@@ -10,5 +10,5 @@
 #import <Rdio/Rdio.h>
 
 #import "FLAnimatedImage.h"
-#import "GAI.h"
+#import "Flurry.h"
 #import "SSKeychain.h"

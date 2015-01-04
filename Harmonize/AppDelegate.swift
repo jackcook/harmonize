@@ -17,10 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var soundCloudLoginURL: NSURL!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        GAI.sharedInstance().trackUncaughtExceptions = true
-        GAI.sharedInstance().dispatchInterval = 20
-        GAI.sharedInstance().logger.logLevel = .Verbose
-        GAI.sharedInstance().trackerWithTrackingId("UA-58202007-1")
+        Flurry.startSession("XMFH35N6SFV5CV97G7FD")
         
         return true
     }
