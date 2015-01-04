@@ -27,7 +27,7 @@ class PlayingViewController: UIViewController {
         
         coverImage.clipsToBounds = true
         
-        SPTTrack.trackWithURI(NSURL(string: "spotify:track:6kIpxmFQ35wgI3cK77LKbx"), session: spotifySession) { (error, track) -> Void in
+        SPTTrack.trackWithURI(NSURL(string: "spotify:track:2IWw5tDMzgtUyAT4EwKAYW"), session: spotifySession) { (error, track) -> Void in
             let t = track as SPTTrack
             self.total = Int(t.duration)
             
@@ -42,17 +42,17 @@ class PlayingViewController: UIViewController {
             let secstr = NSString(format: "%02d", secs)
             self.totalTime.text = "\(mins):\(secstr)"
             
-            self.albumTitle.text = t.artists[0].name
+            self.albumTitle.text = "\(t.artists[0].name) – \(t.album.name)"
             self.songTitle.text = t.name
             Mozart().load(t.album.largestCover.imageURL.absoluteString!).into(self.coverImage)
             
             spotifyPlayer.playTrackProvider(track as SPTTrack, callback: nil)
+            
+            let timer = NSTimer(timeInterval: 0.25, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         }
-        
-        let timer = NSTimer(timeInterval: 0.25, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
-
+    
     func updateTime() {
         let width = (deviceSize.width / CGFloat(total)) * CGFloat(spotifyPlayer.currentPlaybackPosition)
         
