@@ -90,7 +90,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
             
             var gradient = CAGradientLayer()
             gradient.frame = artistImage.bounds
-            gradient.colors = [UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.9).CGColor]
+            gradient.colors = [UIColor(red: 0, green: 0, blue: 0, alpha: 0.75).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.75).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.75).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.95).CGColor]
             artistImage.layer.insertSublayer(gradient, atIndex: 0)
         }
     }
@@ -146,8 +146,24 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         timeLabel.text = indexPath.section == 0 ? "\(Int(topTracks[indexPath.row].duration))" : "\(albums[indexPath.row].firstTrackPage.items.count) Songs"
         timeLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1)
         timeLabel.font = UIFont(name: "Avenir-Light", size: 14)
+        
+        if indexPath.section == 0 {
+            var mins = 0
+            var secs = Int(topTracks[indexPath.row].duration)
+            
+            while secs >= 60 {
+                secs -= 60
+                mins += 1
+            }
+            
+            let secstr = NSString(format: "%02d", secs)
+            timeLabel.text = "\(mins):\(secstr)"
+        }
+        
         timeLabel.sizeToFit()
         timeLabel.frame = CGRectMake(tableView.bounds.size.width - timeLabel.frame.size.width - 38, (48 - timeLabel.frame.size.height) / 2, timeLabel.frame.size.width, timeLabel.frame.size.height)
+        
+        nameLabel.frame.size.width = timeLabel.frame.origin.x - nameLabel.frame.origin.x - 16
         
         cell.addSubview(numLabel)
         cell.addSubview(nameLabel)
