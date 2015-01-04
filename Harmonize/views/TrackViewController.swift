@@ -47,6 +47,7 @@ class TrackViewController: UIViewController {
         Mozart().load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage)
         
         spotifyPlayer.playTrackProvider(track, callback: nil)
+        spotifyPlayer.setVolume(0.75, callback: nil)
         
         let timer = NSTimer(timeInterval: 0.25, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)

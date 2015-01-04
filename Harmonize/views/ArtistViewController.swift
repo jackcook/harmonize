@@ -49,7 +49,6 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
             
             let locale = NSLocale.currentLocale()
             let countryCode = locale.objectForKey(NSLocaleCountryCode) as String
-            println("\(countryCode)")
             
             a.requestTopTracksForTerritory(countryCode, withSession: spotifySession, callback: { (error, tracks) -> Void in
                 self.topTracks = tracks as [SPTTrack]
