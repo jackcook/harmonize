@@ -27,10 +27,6 @@ class PlayingViewController: UIViewController {
         
         coverImage.clipsToBounds = true
         
-        if spotifySession == nil {
-            println("nil")
-        }
-        
         SPTTrack.trackWithURI(NSURL(string: "spotify:track:6kIpxmFQ35wgI3cK77LKbx"), session: spotifySession) { (error, track) -> Void in
             let t = track as SPTTrack
             self.total = Int(t.duration)

@@ -13,7 +13,7 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if NSUserDefaults.standardUserDefaults().objectForKey("spotifySession") != nil {
+        if SSKeychain.passwordForService("harmonize", account: "spotify") != nil {
             authenticateSpotify()
         } else {
             let spotifyAuth = SPTAuth.defaultInstance()
@@ -25,7 +25,7 @@ class LoadingViewController: UIViewController {
             authenticateSoundCloud()
         } else {
             let soundCloudLoginURL = NSURL(string: "https://soundcloud.com/connect?client_id=\(soundCloudClientID)&response_type=code&redirect_uri=\(soundCloudCallbackURL)")!
-            //UIApplication.sharedApplication().openURL(soundCloudLoginURL)
+            UIApplication.sharedApplication().openURL(soundCloudLoginURL)
         }
     }
     

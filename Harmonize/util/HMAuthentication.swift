@@ -28,7 +28,8 @@ let spotifyTokenRefreshURL = "http://harmonize.co:1234/refresh"
 var spotifyAuthenticated = false
 
 func authenticateSpotify() {
-    let sessionData = NSUserDefaults.standardUserDefaults().objectForKey("spotifySession") as NSData
+    let sessionString = SSKeychain.passwordForService("harmonize", account: "spotify")
+    let sessionData = NSData(base64EncodedString: sessionString, options: nil)!
     let session = NSKeyedUnarchiver.unarchiveObjectWithData(sessionData) as SPTSession
     
     SPTAuth.defaultInstance().renewSession(session, withServiceEndpointAtURL: NSURL(string: spotifyTokenRefreshURL)) { (error, session) -> Void in
@@ -38,7 +39,8 @@ func authenticateSpotify() {
         }
         
         let sessionData = NSKeyedArchiver.archivedDataWithRootObject(session)
-        NSUserDefaults.standardUserDefaults().setObject(sessionData, forKey: "spotifySession")
+        let sessionString = sessionData.base64EncodedStringWithOptions(nil)
+        SSKeychain.setPassword(sessionString, forService: "harmonize", account: "spotify")
         
         spotifySession = session
         spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
@@ -56,7 +58,8 @@ func authenticateSpotifyWithURL(url: NSURL) -> Bool {
             }
             
             let sessionData = NSKeyedArchiver.archivedDataWithRootObject(session)
-            NSUserDefaults.standardUserDefaults().setObject(sessionData, forKey: "spotifySession")
+            let sessionString = sessionData.base64EncodedStringWithOptions(nil)
+            SSKeychain.setPassword(sessionString, forService: "harmonize", account: "spotify")
             
             spotifySession = session
             spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
