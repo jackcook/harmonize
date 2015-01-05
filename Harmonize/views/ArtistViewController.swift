@@ -27,8 +27,6 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rdioPlayer.authorizeFromController(self)
-        
         artistImage.clipsToBounds = true
         
         tableView.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)

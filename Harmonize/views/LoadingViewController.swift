@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
-class LoadingViewController: UIViewController {
+class LoadingViewController: UIViewController, RdioDelegate {
     
     var gifView: FLAnimatedImageView!
     
@@ -29,7 +29,13 @@ class LoadingViewController: UIViewController {
                 UIApplication.sharedApplication().openURL(soundCloudLoginURL)
             }*/
             
-            authenticateRdio()
+            if SSKeychain.passwordForService("harmonize", account: "rdio") != nil {
+                let token = SSKeychain.passwordForService("harmonize", account: "rdio")
+                rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: self)
+                rdioPlayer.authorizeUsingAccessToken(token)
+            } else {
+                authenticateRdio()
+            }
         }
     }
     
@@ -56,6 +62,10 @@ class LoadingViewController: UIViewController {
     func finished() {
         gifView.image = UIImage(named: "loading.gif")
         self.performSegueWithIdentifier("browseSegue", sender: self)
+    }
+    
+    func rdioDidAuthorizeUser(user: [NSObject : AnyObject]!, withAccessToken accessToken: String!) {
+        SSKeychain.setPassword(accessToken, forService: "harmonize", account: "rdio")
     }
     
     override func prefersStatusBarHidden() -> Bool {

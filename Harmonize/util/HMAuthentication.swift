@@ -137,33 +137,20 @@ let rdioConsumerKey = "2cb63333mevn8gaet83g82mg"
 let rdioSharedSecret = "wtcRmU4Zqr"
 var rdioAuthenticated = false
 
-var rdioOAuthToken = ""
-var rdioOAuthTokenSecret = ""
-var rdioLoginURL = ""
-
 func authenticateRdio() {
-    rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
-    
-    /*let client = AFOAuth1Client(baseURL: NSURL(string: "http://api.rdio.com/"), key: rdioConsumerKey, secret: rdioSharedSecret)
+    let client = AFOAuth1Client(baseURL: NSURL(string: "http://api.rdio.com/"), key: rdioConsumerKey, secret: rdioSharedSecret)
     client.authorizeUsingOAuthWithRequestTokenPath("/oauth/request_token", userAuthorizationPath: "https://rdio.com/oauth/authorize", callbackURL: NSURL(string: "harmonize-login://rdio"), accessTokenPath: "/oauth/access_token", accessMethod: "POST", scope: nil, success: { (accessToken, responseObject) -> Void in
         let token = accessToken.key
+        let secret = accessToken.secret
+        let rdioAccessToken = "oauth_token=\(token)&oauth_token_secret=\(secret)"
         
         rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
-        rdioPlayer.authorizeUsingAccessToken(token)
+        rdioPlayer.authorizeUsingAccessToken(rdioAccessToken)
+        
+        SSKeychain.setPassword(rdioAccessToken, forService: "harmonize", account: "rdio")
         
         rdioAuthenticated = true
     }) { (error) -> Void in
         println("Error authenticating rdio: \(error.localizedDescription)")
-    }*/
-}
-
-func generateOAuthNonce() -> String {
-    let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    var randomString = NSMutableString(capacity: 32)
-    for i in 0...32 {
-        let rand = arc4random_uniform(UInt32(letters.length))
-        randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
     }
-    
-    return randomString
 }

@@ -9,6 +9,7 @@
 #import <Spotify/Spotify.h>
 #import <Rdio/Rdio.h>
 
+#import "AFOAuth1Client.h"
 #import "FLAnimatedImage.h"
 #import "Flurry.h"
 #import "SSKeychain.h"
