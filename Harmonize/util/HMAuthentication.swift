@@ -17,6 +17,7 @@ func authenticateWithURL(url: NSURL) -> Bool {
         return authenticateSoundCloudWithCode(url.query!.componentsSeparatedByString("=")[1])
     default:
         println("Error authenticating service: \(url.host!)")
+        println("\(url.absoluteString)")
         return false
     }
 }
@@ -136,8 +137,33 @@ let rdioConsumerKey = "2cb63333mevn8gaet83g82mg"
 let rdioSharedSecret = "wtcRmU4Zqr"
 var rdioAuthenticated = false
 
-func authenticateRdio() -> Bool {
+var rdioOAuthToken = ""
+var rdioOAuthTokenSecret = ""
+var rdioLoginURL = ""
+
+func authenticateRdio() {
     rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
-    rdioAuthenticated = true
-    return rdioAuthenticated
+    
+    /*let client = AFOAuth1Client(baseURL: NSURL(string: "http://api.rdio.com/"), key: rdioConsumerKey, secret: rdioSharedSecret)
+    client.authorizeUsingOAuthWithRequestTokenPath("/oauth/request_token", userAuthorizationPath: "https://rdio.com/oauth/authorize", callbackURL: NSURL(string: "harmonize-login://rdio"), accessTokenPath: "/oauth/access_token", accessMethod: "POST", scope: nil, success: { (accessToken, responseObject) -> Void in
+        let token = accessToken.key
+        
+        rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: nil)
+        rdioPlayer.authorizeUsingAccessToken(token)
+        
+        rdioAuthenticated = true
+    }) { (error) -> Void in
+        println("Error authenticating rdio: \(error.localizedDescription)")
+    }*/
+}
+
+func generateOAuthNonce() -> String {
+    let letters: NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    var randomString = NSMutableString(capacity: 32)
+    for i in 0...32 {
+        let rand = arc4random_uniform(UInt32(letters.length))
+        randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+    }
+    
+    return randomString
 }

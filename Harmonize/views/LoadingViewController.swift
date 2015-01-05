@@ -22,12 +22,14 @@ class LoadingViewController: UIViewController {
                 UIApplication.sharedApplication().openURL(spotifyLoginURL)
             }
             
-            if SSKeychain.passwordForService("harmonize", account: "soundcloud") != nil {
+            /*if SSKeychain.passwordForService("harmonize", account: "soundcloud") != nil {
                 authenticateSoundCloud()
             } else {
                 let soundCloudLoginURL = NSURL(string: "https://soundcloud.com/connect?client_id=\(soundCloudClientID)&response_type=code&redirect_uri=\(soundCloudCallbackURL)")!
                 UIApplication.sharedApplication().openURL(soundCloudLoginURL)
-            }
+            }*/
+            
+            authenticateRdio()
         }
     }
     

@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        let notification = NSNotification(name: kAFApplicationLaunchedWithURLNotification, object: nil, userInfo: [kAFApplicationLaunchOptionsURLKey: url])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
+        
         if url.scheme == "harmonize-login" {
             return authenticateWithURL(url)
         }

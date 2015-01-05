@@ -14,7 +14,6 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet var tableView: UITableView!
     
-    var headerTitles = ["Top Tracks", "Albums"]
     var topTracks: [SPTTrack]!
     var albums: [SPTAlbum]!
     
@@ -28,6 +27,8 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        rdioPlayer.authorizeFromController(self)
+        
         artistImage.clipsToBounds = true
         
         tableView.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
@@ -36,7 +37,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         
         albums = [SPTAlbum]()
         
-        SPTArtist.artistWithURI(NSURL(string: "spotify:artist:3sS2Q1UZuUXL7TZSbQumDI"), session: spotifySession) { (error, artist) -> Void in
+        SPTArtist.artistWithURI(NSURL(string: "spotify:artist:07QEuhtrNmmZ0zEcqE9SF6"), session: spotifySession) { (error, artist) -> Void in
             let a = artist as SPTArtist
             Mozart().load(a.largestImage.imageURL.absoluteString!).into(self.artistImage)
             self.artistName.text = a.name
@@ -62,7 +63,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             })
             
-            a.requestAlbumsOfType(SPTAlbumType.Album, withSession: spotifySession, availableInTerritory: countryCode, callback: { (error, listPage) -> Void in
+            a.requestAlbumsOfType(SPTAlbumType.Single, withSession: spotifySession, availableInTerritory: countryCode, callback: { (error, listPage) -> Void in
                 let lp = listPage as SPTListPage
                 
                 for album in lp.items as [SPTPartialAlbum] {
@@ -109,7 +110,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         header.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
         
         var title = UILabel()
-        title.text = headerTitles[section]
+        title.text = section == 0 ? "Top Tracks" : "Albums"
         title.textColor = UIColor(red: 0.47, green: 0.47, blue: 0.47, alpha: 1)
         title.font = UIFont(name: "Avenir-Light", size: 14)
         title.sizeToFit()

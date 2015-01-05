@@ -233,8 +233,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGr-by-Gl0">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="32" id="5Cb-CS-63q"/>
-                                    <constraint firstAttribute="height" constant="24" id="y5O-Ng-RRt"/>
+                                    <constraint firstAttribute="width" constant="32" id="5Cb-CS-63q">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="24" id="y5O-Ng-RRt">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="22"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" image="image07.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,8 +262,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKq-9J-Wd5">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="XOe-Ba-KWB"/>
-                                    <constraint firstAttribute="height" constant="36" id="rar-aW-Waj"/>
+                                    <constraint firstAttribute="width" constant="26" id="XOe-Ba-KWB">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="24"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="36" id="rar-aW-Waj">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="34"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" image="image08.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -283,8 +291,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcc-bm-fPR">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="J2b-sQ-6fH"/>
-                                    <constraint firstAttribute="width" constant="32" id="Njt-t9-Xmu"/>
+                                    <constraint firstAttribute="height" constant="24" id="J2b-sQ-6fH">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="22"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="32" id="Njt-t9-Xmu">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="30"/>
+                                    </constraint>
                                 </constraints>
                                 <state key="normal" image="image10.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -500,7 +512,7 @@
                             <constraint firstItem="aW0-Zw-V1L" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="RQn-Re-QPw"/>
                             <constraint firstItem="hW7-1N-URc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="URe-cD-Oyj"/>
                             <constraint firstItem="m2i-9d-vOU" firstAttribute="top" secondItem="WKq-9J-Wd5" secondAttribute="bottom" constant="15" id="Uuv-WE-9Ka">
-                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="18"/>
                             </constraint>
                             <constraint firstItem="hW7-1N-URc" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="YYU-yL-KPg"/>
                             <constraint firstItem="2Nw-cK-Mmf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="17" id="Yxs-bk-8pB"/>

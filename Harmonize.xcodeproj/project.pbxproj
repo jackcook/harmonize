@@ -40,6 +40,8 @@
 		EBAB8A041A599506002933BE /* image16.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB8A001A599506002933BE /* image16.png */; };
 		EBAB8A051A599506002933BE /* image17.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB8A011A599506002933BE /* image17.png */; };
 		EBAB8A061A599506002933BE /* image18.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB8A021A599506002933BE /* image18.png */; };
+		EBAB8A081A5A4364002933BE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAB8A071A5A4364002933BE /* SystemConfiguration.framework */; };
+		EBAB8A0A1A5A4369002933BE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBAB8A091A5A4369002933BE /* MobileCoreServices.framework */; };
 		EBC58B951A586561002543BD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC58B941A586561002543BD /* LoadingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +96,8 @@
 		EBAB8A001A599506002933BE /* image16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image16.png; sourceTree = "<group>"; };
 		EBAB8A011A599506002933BE /* image17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image17.png; sourceTree = "<group>"; };
 		EBAB8A021A599506002933BE /* image18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image18.png; sourceTree = "<group>"; };
+		EBAB8A071A5A4364002933BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EBAB8A091A5A4369002933BE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EBC58B941A586561002543BD /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBAB8A0A1A5A4369002933BE /* MobileCoreServices.framework in Frameworks */,
+				EBAB8A081A5A4364002933BE /* SystemConfiguration.framework in Frameworks */,
 				EB4C0FA61A565F980004A3D7 /* AVFoundation.framework in Frameworks */,
 				5353D35BA88BAE773D0106BE /* libPods.a in Frameworks */,
 				EB1F54A11A571CDE0098A956 /* Rdio.framework in Frameworks */,
@@ -139,6 +145,8 @@
 		EB1F549E1A571CDE0098A956 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EBAB8A091A5A4369002933BE /* MobileCoreServices.framework */,
+				EBAB8A071A5A4364002933BE /* SystemConfiguration.framework */,
 				EB1F549F1A571CDE0098A956 /* Rdio.framework */,
 				EB1F54A01A571CDE0098A956 /* Spotify.framework */,
 			);
@@ -305,6 +313,7 @@
 				TargetAttributes = {
 					EB4C0F7D1A56515E0004A3D7 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = JDJKS788L2;
 					};
 					EB4C0F921A56515E0004A3D7 = {
 						CreatedOnToolsVersion = 6.1.1;
