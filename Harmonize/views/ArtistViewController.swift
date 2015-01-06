@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
-class ArtistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ArtistViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RDAPIRequestDelegateProtocol {
     
     @IBOutlet var artistImage: UIImageView!
     @IBOutlet var artistName: UILabel!
@@ -26,6 +26,8 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        rdioPlayer.callAPIMethod("get", withParameters: ["keys": "r369464"], delegate: self)
         
         artistImage.clipsToBounds = true
         
@@ -93,6 +95,19 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
             gradient.colors = [UIColor(red: 0, green: 0, blue: 0, alpha: 0.75).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.75).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.75).CGColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.95).CGColor]
             artistImage.layer.insertSublayer(gradient, atIndex: 0)
         }
+    }
+    
+    func rdioRequest(request: RDAPIRequest!, didLoadData data: AnyObject!) {
+        let dataDict = data as NSDictionary
+        if let artist = dataDict["r369464"] as NSDictionary? {
+            if let name = artist["name"] as String? {
+                self.artistName.text = name
+            }
+        }
+    }
+    
+    func rdioRequest(request: RDAPIRequest!, didFailWithError error: NSError!) {
+        println("\(error.localizedDescription)")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
