@@ -10,3 +10,4 @@ tar -xzvf rdio-ios.tar.gz
 rm rdio-ios.tar.gz
 mv rdio-ios-*/Rdio.framework Rdio.framework
 rm -rf rdio-ios*
+pod install
