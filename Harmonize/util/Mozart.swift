@@ -20,7 +20,7 @@ public class Mozart {
 public class LoadingClass: NSObject {
     
     var url: String!
-    var completionBlock: (Void -> Void)!
+    var completionBlock: (UIImage -> Void)!
     
     public func into(imageView: UIImageView) -> LoadingClass {
         getImage() { (image) -> Void in
@@ -46,11 +46,11 @@ public class LoadingClass: NSObject {
         return self
     }
     
-    public func completion(block: Void -> Void) -> Void {
+    public func completion(block: UIImage -> Void) {
         completionBlock = block
     }
     
-    public func getImage(block: UIImage -> Void) {
+    func getImage(block: UIImage -> Void) {
         var actualUrl = NSURL(string: url)!
         var request = NSURLRequest(URL: actualUrl)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
@@ -58,7 +58,7 @@ public class LoadingClass: NSObject {
                 var image = UIImage(data: data)!
                 block(image)
                 if (self.completionBlock != nil) {
-                    self.completionBlock()
+                    self.completionBlock(image)
                 }
             } else {
                 println("Error: \(error.localizedDescription)")
