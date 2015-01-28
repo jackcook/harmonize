@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var soundCloudLoginURL: NSURL!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Flurry.startSession("XMFH35N6SFV5CV97G7FD")
-        
         return true
     }
 
