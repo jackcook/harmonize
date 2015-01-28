@@ -1,3 +1,4 @@
+rm -rf Frameworks
 mkdir Frameworks
 cd Frameworks
 wget "https://github.com/spotify/ios-sdk/archive/master.zip"
