@@ -29,13 +29,13 @@ class LoadingViewController: UIViewController, RdioDelegate {
                 UIApplication.sharedApplication().openURL(soundCloudLoginURL)
             }*/
             
-            if SSKeychain.passwordForService("harmonize", account: "rdio") != nil {
+            /*if SSKeychain.passwordForService("harmonize", account: "rdio") != nil {
                 let token = SSKeychain.passwordForService("harmonize", account: "rdio")
                 rdioPlayer = Rdio(consumerKey: rdioConsumerKey, andSecret: rdioSharedSecret, delegate: self)
                 rdioPlayer.authorizeUsingAccessToken(token)
             } else {
                 authenticateRdio()
-            }
+            }*/
         }
     }
     

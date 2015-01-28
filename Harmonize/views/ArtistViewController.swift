@@ -37,6 +37,21 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         
         albums = [SPTAlbum]()
         
+        HMArtist.fromSpotifyURI("spotify:artist:07QEuhtrNmmZ0zEcqE9SF6") { (artist) -> Void in
+            let imageURL = artist.imageURL.absoluteString!
+            Mozart().load(imageURL).into(self.artistImage)
+            self.artistName.text = artist.name
+            
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = .DecimalStyle
+            let numstr = formatter.stringFromNumber(artist.followerCount)!.stringByReplacingOccurrencesOfString(",", withString: " ")
+            
+            self.artistFollowers.text = "\(numstr) Followers"
+            
+            let locale = NSLocale.currentLocale()
+            let countryCode = locale.objectForKey(NSLocaleCountryCode) as String
+        }
+        
         SPTArtist.artistWithURI(NSURL(string: "spotify:artist:07QEuhtrNmmZ0zEcqE9SF6"), session: spotifySession) { (error, artist) -> Void in
             let a = artist as SPTArtist
             Mozart().load(a.largestImage.imageURL.absoluteString!).into(self.artistImage)

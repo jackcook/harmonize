@@ -46,6 +46,10 @@
 		EBAB8A051A599506002933BE /* image17.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB8A011A599506002933BE /* image17.png */; };
 		EBAB8A061A599506002933BE /* image18.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAB8A021A599506002933BE /* image18.png */; };
 		EBC58B951A586561002543BD /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC58B941A586561002543BD /* LoadingViewController.swift */; };
+		EBEA32CE1A798AF80043AACF /* HMArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32CD1A798AF80043AACF /* HMArtist.swift */; };
+		EBEA32D21A798E0E0043AACF /* HMSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D11A798E0E0043AACF /* HMSource.swift */; };
+		EBEA32D41A79955D0043AACF /* HMTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D31A79955D0043AACF /* HMTrack.swift */; };
+		EBEA32D61A7995A20043AACF /* HMAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D51A7995A20043AACF /* HMAlbum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +111,10 @@
 		EBAB8A071A5A4364002933BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EBAB8A091A5A4369002933BE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EBC58B941A586561002543BD /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		EBEA32CD1A798AF80043AACF /* HMArtist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMArtist.swift; sourceTree = "<group>"; };
+		EBEA32D11A798E0E0043AACF /* HMSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMSource.swift; sourceTree = "<group>"; };
+		EBEA32D31A79955D0043AACF /* HMTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMTrack.swift; sourceTree = "<group>"; };
+		EBEA32D51A7995A20043AACF /* HMAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAlbum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +262,7 @@
 		EB4C0FA71A565FAE0004A3D7 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				EBEA32CC1A798AE90043AACF /* object */,
 				EB4C0FA81A565FB70004A3D7 /* ObjectiveBridge.h */,
 				EB1F549C1A5702230098A956 /* HMAuthentication.swift */,
 				EB0B0F011A573B6700550B34 /* Mozart.swift */,
@@ -271,6 +280,17 @@
 				EB3655961A71E67D007E7C5B /* AlbumView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		EBEA32CC1A798AE90043AACF /* object */ = {
+			isa = PBXGroup;
+			children = (
+				EBEA32CD1A798AF80043AACF /* HMArtist.swift */,
+				EBEA32D11A798E0E0043AACF /* HMSource.swift */,
+				EBEA32D31A79955D0043AACF /* HMTrack.swift */,
+				EBEA32D51A7995A20043AACF /* HMAlbum.swift */,
+			);
+			path = object;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,12 +454,16 @@
 				EB1C02311A583FE700D14C8E /* TrackViewController.swift in Sources */,
 				EB4C0FAD1A5660E90004A3D7 /* Common.swift in Sources */,
 				EB0B0F021A573B6700550B34 /* Mozart.swift in Sources */,
+				EBEA32D21A798E0E0043AACF /* HMSource.swift in Sources */,
 				EB3655971A71E67D007E7C5B /* AlbumView.swift in Sources */,
 				EBAB89FE1A591F90002933BE /* ArtistViewController.swift in Sources */,
+				EBEA32D41A79955D0043AACF /* HMTrack.swift in Sources */,
 				EB1F549D1A5702230098A956 /* HMAuthentication.swift in Sources */,
 				EBC58B951A586561002543BD /* LoadingViewController.swift in Sources */,
+				EBEA32D61A7995A20043AACF /* HMAlbum.swift in Sources */,
 				EB8C55CF1A5E060A00B0B726 /* BrowseViewController.swift in Sources */,
 				EB4C0F841A56515E0004A3D7 /* AppDelegate.swift in Sources */,
+				EBEA32CE1A798AF80043AACF /* HMArtist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

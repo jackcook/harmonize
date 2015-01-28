@@ -15,18 +15,37 @@ class BrowseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SPTAlbum.albumWithURI(NSURL(string: "spotify:album:2spbck4ETZz1aLq5Fi5phC"), session: spotifySession) { (error, album) -> Void in
-            let albumView = AlbumView(album: album as SPTAlbum, frame: CGRectMake(0, 0, self.scrollView.frame.size.height * (13/20), self.scrollView.frame.size.height))
+        let locale = NSLocale.currentLocale()
+        let countryCode = locale.objectForKey(NSLocaleCountryCode) as String
+        
+        SPTRequest.requestNewReleasesForCountry(countryCode, limit: 6, offset: 0, session: spotifySession) { (error, listPage) -> Void in
+            if error != nil {
+                println("\(error.localizedDescription)")
+            }
             
-            self.scrollView.addSubview(albumView)
+            let lp = listPage as SPTListPage
             
-            self.albumViews.append(albumView)
+            for partialAlbum in lp.items {
+                let pa = partialAlbum as SPTPartialAlbum
+                SPTRequest.requestItemFromPartialObject(pa, withSession: spotifySession, callback: { (error, album) -> Void in
+                    if error != nil {
+                        println("\(error.localizedDescription)")
+                    } else {
+                        let a = album as SPTAlbum
+                        
+                        let albumView = AlbumView(album: a, frame: CGRectMake(self.albumViews.count == 0 ? 0 : ((self.albumViews[0].frame.size.width + 16) * CGFloat(self.albumViews.count)), 0, (self.scrollView.frame.size.height) * (13/20), self.scrollView.frame.size.height))
+                        
+                        self.scrollView.addSubview(albumView)
+                        self.albumViews.append(albumView)
+                    }
+                    
+                    self.scrollView.contentSize = CGSizeMake(self.scrollView.subviews[self.scrollView.subviews.count - 1].frame.origin.x + self.scrollView.subviews[self.scrollView.subviews.count - 1].frame.size.width, self.scrollView.frame.size.height)
+                })
+            }
         }
     }
     
     override func viewDidLayoutSubviews() {
-        scrollView.clipsToBounds = false
-        
         for albumView in albumViews {
             albumView.layer.shadowColor = UIColor.blackColor().CGColor
             albumView.layer.shadowPath = UIBezierPath(roundedRect: CGRectMake(0, 0, albumView.bounds.width, albumView.bounds.height), cornerRadius: 0).CGPath
@@ -35,6 +54,8 @@ class BrowseViewController: UIViewController {
             albumView.layer.shadowRadius = 4
             albumView.layer.masksToBounds = true
             albumView.clipsToBounds = false
+            
+            scrollView.clipsToBounds = false
         }
     }
     
