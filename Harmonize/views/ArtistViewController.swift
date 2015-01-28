@@ -47,9 +47,6 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
             let numstr = formatter.stringFromNumber(artist.followerCount)!.stringByReplacingOccurrencesOfString(",", withString: " ")
             
             self.artistFollowers.text = "\(numstr) Followers"
-            
-            let locale = NSLocale.currentLocale()
-            let countryCode = locale.objectForKey(NSLocaleCountryCode) as String
         }
         
         SPTArtist.artistWithURI(NSURL(string: "spotify:artist:07QEuhtrNmmZ0zEcqE9SF6"), session: spotifySession) { (error, artist) -> Void in

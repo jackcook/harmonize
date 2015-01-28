@@ -50,6 +50,7 @@
 		EBEA32D21A798E0E0043AACF /* HMSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D11A798E0E0043AACF /* HMSource.swift */; };
 		EBEA32D41A79955D0043AACF /* HMTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D31A79955D0043AACF /* HMTrack.swift */; };
 		EBEA32D61A7995A20043AACF /* HMAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D51A7995A20043AACF /* HMAlbum.swift */; };
+		EBEA32D81A79A2310043AACF /* HMAlbumType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEA32D71A79A2310043AACF /* HMAlbumType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		EBEA32D11A798E0E0043AACF /* HMSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMSource.swift; sourceTree = "<group>"; };
 		EBEA32D31A79955D0043AACF /* HMTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMTrack.swift; sourceTree = "<group>"; };
 		EBEA32D51A7995A20043AACF /* HMAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAlbum.swift; sourceTree = "<group>"; };
+		EBEA32D71A79A2310043AACF /* HMAlbumType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAlbumType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 				EBEA32D11A798E0E0043AACF /* HMSource.swift */,
 				EBEA32D31A79955D0043AACF /* HMTrack.swift */,
 				EBEA32D51A7995A20043AACF /* HMAlbum.swift */,
+				EBEA32D71A79A2310043AACF /* HMAlbumType.swift */,
 			);
 			path = object;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBEA32D81A79A2310043AACF /* HMAlbumType.swift in Sources */,
 				EB1C02311A583FE700D14C8E /* TrackViewController.swift in Sources */,
 				EB4C0FAD1A5660E90004A3D7 /* Common.swift in Sources */,
 				EB0B0F021A573B6700550B34 /* Mozart.swift in Sources */,

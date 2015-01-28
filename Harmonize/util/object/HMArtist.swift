@@ -56,22 +56,26 @@ class HMArtist: NSObject {
             let lp = listPage as SPTListPage
             
             for album in lp.items as [SPTPartialAlbum] {
-                SPTRequest.requestItemFromPartialObject(album, withSession: spotifySession, callback: { (error, fullAlbum) -> Void in
-                    HMAlbum.fromSpotifyAlbum(fullAlbum as SPTAlbum) { (newAlbum) -> Void in
-                        artist.albums.append(newAlbum as HMAlbum)
-                        if artist.albums.count == listPage.count {
-                            albumsDone = true
-                            
-                            if tracksDone && albumsDone {
-                                block(artist)
-                            }
+                HMAlbum.fromSpotifyPartialAlbum(album) { (newAlbum) -> Void in
+                    artist.albums.append(newAlbum as HMAlbum)
+                    if artist.albums.count == listPage.count {
+                        albumsDone = true
+                        
+                        if tracksDone && albumsDone {
+                            block(artist)
                         }
                     }
-                })
+                }
             }
         }
-        
-        block(artist)
+    }
+    
+    class func fromSpotifyPartialArtist(spotifyArtist: SPTPartialArtist, block: HMArtist -> Void) {
+        SPTRequest.requestItemFromPartialObject(spotifyArtist, withSession: spotifySession) { (error, artist) -> Void in
+            HMArtist.fromSpotifyArtist(artist as SPTArtist) { (artist) -> Void in
+                block(artist)
+            }
+        }
     }
     
     class func fromSpotifyURI(spotifyURI: String, block: HMArtist -> Void) {
