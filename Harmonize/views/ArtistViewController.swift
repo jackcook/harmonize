@@ -22,12 +22,13 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     var laidOut = false
     
+    var artistURI: NSURL!
     var trackToSend: SPTTrack!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        rdioPlayer.callAPIMethod("get", withParameters: ["keys": "r369464"], delegate: self)
+        //rdioPlayer.callAPIMethod("get", withParameters: ["keys": "r369464"], delegate: self)
         
         artistImage.clipsToBounds = true
         
@@ -49,7 +50,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
             self.artistFollowers.text = "\(numstr) Followers"
         }*/
         
-        SPTArtist.artistWithURI(NSURL(string: "spotify:artist:07QEuhtrNmmZ0zEcqE9SF6"), session: spotifySession) { (error, artist) -> Void in
+        SPTArtist.artistWithURI(artistURI, session: spotifySession) { (error, artist) -> Void in
             let a = artist as SPTArtist
             Mozart().load(a.largestImage.imageURL.absoluteString!).into(self.artistImage)
             self.artistName.text = a.name

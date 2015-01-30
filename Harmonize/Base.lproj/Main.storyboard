@@ -1183,7 +1183,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jgp-1g-in4">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jgp-1g-in4">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1288,11 +1288,13 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="jgp-1g-in4" id="VdA-Y4-RDZ"/>
+                        <outlet property="textField" destination="ou2-kg-Zgq" id="bOA-hU-fGN"/>
+                        <segue destination="Mz4-TU-iqT" kind="show" identifier="artistSegue" id="dUu-Py-laA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rms-5u-7Ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3622.5" y="-566.25"/>
+            <point key="canvasLocation" x="3622.5" y="-562.5"/>
         </scene>
         <!--Artist View Controller-->
         <scene sceneID="D3u-eX-pMl">
@@ -1690,4 +1692,7 @@
         <image name="image16.png" width="242" height="72"/>
         <image name="image20.png" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dUu-Py-laA"/>
+    </inferredMetricsTieBreakers>
 </document>
