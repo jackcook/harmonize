@@ -263,7 +263,7 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="26" id="XOe-Ba-KWB">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="24"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="28"/>
                                     </constraint>
                                     <constraint firstAttribute="height" constant="36" id="rar-aW-Waj">
                                         <variation key="heightClass=regular-widthClass=compact" constant="34"/>
@@ -285,7 +285,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="pauseButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1WS-1f-Vmh"/>
+                                    <action selector="pauseButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3N4-qR-NrR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcc-bm-fPR">
@@ -494,7 +494,9 @@
                             </constraint>
                             <constraint firstItem="swh-4s-pFe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="E8t-Rh-03R"/>
                             <constraint firstAttribute="trailing" secondItem="swh-4s-pFe" secondAttribute="trailing" id="EZH-UC-Bdc"/>
-                            <constraint firstAttribute="centerX" secondItem="WKq-9J-Wd5" secondAttribute="centerX" id="Eft-8l-i5m"/>
+                            <constraint firstAttribute="centerX" secondItem="WKq-9J-Wd5" secondAttribute="centerX" id="Eft-8l-i5m">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="nQr-xV-dap" firstAttribute="top" secondItem="pIX-xv-9oO" secondAttribute="bottom" constant="9" id="FLy-Uq-tzi">
                                 <variation key="heightClass=regular-widthClass=compact" constant="13"/>
                             </constraint>
@@ -681,6 +683,7 @@
                         <outlet property="albumTitle" destination="RCo-ML-BjZ" id="qlX-1j-u8a"/>
                         <outlet property="coverImage" destination="swh-4s-pFe" id="yKz-im-cc5"/>
                         <outlet property="currentTime" destination="aW0-Zw-V1L" id="Oxs-DH-Tri"/>
+                        <outlet property="pauseButton" destination="WKq-9J-Wd5" id="igG-q9-OGa"/>
                         <outlet property="progressBarLeft" destination="jeF-PI-RKo" id="hBJ-bi-JMe"/>
                         <outlet property="songTitle" destination="hW7-1N-URc" id="BRl-Mb-8dA"/>
                         <outlet property="sourceLabel" destination="m2i-9d-vOU" id="kdt-1Y-5h8"/>
@@ -1332,6 +1335,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="backButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WWW-We-smZ"/>
+                                    <action selector="backButton:" destination="Mz4-TU-iqT" eventType="touchUpInside" id="Yfw-UL-7eh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e60-E9-LNL">

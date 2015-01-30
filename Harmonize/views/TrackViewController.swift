@@ -17,12 +17,15 @@ class TrackViewController: UIViewController {
     @IBOutlet var albumTitle: UILabel!
     @IBOutlet var songTitle: UILabel!
     
+    @IBOutlet var pauseButton: UIButton!
     @IBOutlet var sourceLabel: UILabel!
     
     var track: SPTTrack!
     
     var paused = false
     var total = 0
+    
+    var pbPoint: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +52,12 @@ class TrackViewController: UIViewController {
         spotifyPlayer.playTrackProvider(track, callback: nil)
         spotifyPlayer.setVolume(0.75, callback: nil)
         
-        let timer = NSTimer(timeInterval: 0.25, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        let timer = NSTimer(timeInterval: 0.1, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        pbPoint = pauseButton.frame.origin
     }
     
     func updateTime() {
@@ -93,6 +100,10 @@ class TrackViewController: UIViewController {
     }
     
     @IBAction func pauseButton(sender: AnyObject) {
+        pauseButton.setImage(paused ? UIImage(named: "image08.png") : UIImage(named: "image09.png"), forState: .Normal)
+        pauseButton.frame = CGRectMake(pauseButton.frame.origin.x, pauseButton.frame.origin.y, (paused ? (74/99) : (90/103)) * pauseButton.frame.size.height, pauseButton.frame.size.height)
+        pauseButton.center = pbPoint
+        
         spotifyPlayer.setIsPlaying(paused ? true : false, callback: nil)
         paused = !paused
     }
