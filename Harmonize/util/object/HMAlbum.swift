@@ -26,8 +26,8 @@ class HMAlbum: NSObject {
         
         album.name = spotifyAlbum.name
         
-        for artist in spotifyAlbum.artists as [SPTArtist] {
-            HMArtist.fromSpotifyArtist(artist) { (newArtist) -> Void in
+        for artist in spotifyAlbum.artists as [SPTPartialArtist] {
+            HMArtist.fromSpotifyPartialArtist(artist) { (newArtist) -> Void in
                 album.artists.append(newArtist)
             }
         }

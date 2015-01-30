@@ -15,6 +15,15 @@ class BrowseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*HMRequest.requestFeaturedAlbums() { (albums) -> Void in
+            for album in albums {
+                let albumView = AlbumView(album: album, frame: CGRectMake(self.albumViews.count == 0 ? 0 : ((self.albumViews[0].frame.size.width + 16) * CGFloat(self.albumViews.count)), 0, (self.scrollView.frame.size.height) * (13/20), self.scrollView.frame.size.height))
+                
+                self.scrollView.addSubview(albumView)
+                self.albumViews.append(albumView)
+            }
+        }*/
+        
         let locale = NSLocale.currentLocale()
         let countryCode = locale.objectForKey(NSLocaleCountryCode) as String
         

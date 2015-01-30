@@ -37,7 +37,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         
         albums = [SPTAlbum]()
         
-        HMArtist.fromSpotifyURI("spotify:artist:07QEuhtrNmmZ0zEcqE9SF6") { (artist) -> Void in
+        /*HMArtist.fromSpotifyURI("spotify:artist:07QEuhtrNmmZ0zEcqE9SF6") { (artist) -> Void in
             let imageURL = artist.imageURL.absoluteString!
             Mozart().load(imageURL).into(self.artistImage)
             self.artistName.text = artist.name
@@ -47,7 +47,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
             let numstr = formatter.stringFromNumber(artist.followerCount)!.stringByReplacingOccurrencesOfString(",", withString: " ")
             
             self.artistFollowers.text = "\(numstr) Followers"
-        }
+        }*/
         
         SPTArtist.artistWithURI(NSURL(string: "spotify:artist:07QEuhtrNmmZ0zEcqE9SF6"), session: spotifySession) { (error, artist) -> Void in
             let a = artist as SPTArtist

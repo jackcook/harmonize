@@ -29,7 +29,7 @@ class HMTrack: NSObject {
     
     class func fromSpotifyPartialTrack(spotifyTrack: SPTPartialTrack, block: HMTrack -> Void) {
         SPTRequest.requestItemFromPartialObject(spotifyTrack, withSession: spotifySession) { (error, track) -> Void in
-            HMTrack.fromSpotifyTrack(track as SPTTrack) { (track) -> Void in
+            HMTrack.fromSpotifyPartialTrack(track as SPTPartialTrack) { (track) -> Void in
                 block(track)
             }
         }

@@ -47,6 +47,8 @@ func authenticateSpotify() {
         spotifyPlayer = SPTAudioStreamingController(clientId: spotifyClientID)
         
         spotifyPlayer.loginWithSession(spotifySession, callback: nil)
+        
+        spotifyAuthenticated = true
     }
 }
 
