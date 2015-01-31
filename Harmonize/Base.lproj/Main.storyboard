@@ -1019,6 +1019,7 @@
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="2UX-3q-3Wu" id="czM-lw-kzL"/>
+                        <outlet property="textField" destination="RD4-Es-xxd" id="rRF-hf-M1j"/>
                         <segue destination="Mz4-TU-iqT" kind="show" identifier="artistSegue" id="KHV-lx-QCD"/>
                     </connections>
                 </viewController>
@@ -1035,6 +1036,7 @@
                         <viewControllerLayoutGuide type="bottom" id="9Lf-qA-oww"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ubb-Fi-w4K">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image04.png" translatesAutoresizingMaskIntoConstraints="NO" id="kHZ-RP-NWa">
@@ -1228,28 +1230,28 @@
                                 <exclude reference="jgp-1g-in4"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Snw-ki-QfZ"/>
+                                <exclude reference="7XX-OK-OMF"/>
+                                <exclude reference="IbK-4d-N1n"/>
+                                <exclude reference="QXZ-IM-faI"/>
+                                <exclude reference="npR-eE-xK7"/>
                                 <exclude reference="i1Y-qd-SvF"/>
                                 <exclude reference="kVf-1e-hEc"/>
                                 <exclude reference="zqZ-Ef-bFL"/>
+                                <exclude reference="6r8-Kf-UJV"/>
+                                <exclude reference="CHc-se-FVE"/>
+                                <exclude reference="psd-d6-9BF"/>
+                                <exclude reference="Rdd-I0-1OZ"/>
+                                <exclude reference="uMm-VN-9Ua"/>
                                 <exclude reference="TAH-s9-rA4"/>
                                 <exclude reference="WKe-WK-Uqh"/>
                                 <exclude reference="bFr-AO-puA"/>
-                                <exclude reference="QXZ-IM-faI"/>
-                                <exclude reference="npR-eE-xK7"/>
                                 <exclude reference="Ilh-xT-LJO"/>
                                 <exclude reference="UEE-ea-mqS"/>
                                 <exclude reference="cYL-y3-5PQ"/>
                                 <exclude reference="LTg-Ms-Qm5"/>
                                 <exclude reference="jyf-Cp-tcV"/>
                                 <exclude reference="lG6-gW-URq"/>
-                                <exclude reference="7XX-OK-OMF"/>
-                                <exclude reference="IbK-4d-N1n"/>
-                                <exclude reference="Rdd-I0-1OZ"/>
-                                <exclude reference="uMm-VN-9Ua"/>
-                                <exclude reference="6r8-Kf-UJV"/>
-                                <exclude reference="CHc-se-FVE"/>
-                                <exclude reference="psd-d6-9BF"/>
-                                <exclude reference="Snw-ki-QfZ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1264,28 +1266,28 @@
                                 <include reference="jgp-1g-in4"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Snw-ki-QfZ"/>
+                                <include reference="7XX-OK-OMF"/>
+                                <include reference="IbK-4d-N1n"/>
+                                <include reference="QXZ-IM-faI"/>
+                                <include reference="npR-eE-xK7"/>
                                 <include reference="i1Y-qd-SvF"/>
                                 <include reference="kVf-1e-hEc"/>
                                 <include reference="zqZ-Ef-bFL"/>
+                                <include reference="6r8-Kf-UJV"/>
+                                <include reference="CHc-se-FVE"/>
+                                <include reference="psd-d6-9BF"/>
+                                <include reference="Rdd-I0-1OZ"/>
+                                <include reference="uMm-VN-9Ua"/>
                                 <include reference="TAH-s9-rA4"/>
                                 <include reference="WKe-WK-Uqh"/>
                                 <include reference="bFr-AO-puA"/>
-                                <include reference="QXZ-IM-faI"/>
-                                <include reference="npR-eE-xK7"/>
                                 <include reference="Ilh-xT-LJO"/>
                                 <include reference="UEE-ea-mqS"/>
                                 <include reference="cYL-y3-5PQ"/>
                                 <include reference="LTg-Ms-Qm5"/>
                                 <include reference="jyf-Cp-tcV"/>
                                 <include reference="lG6-gW-URq"/>
-                                <include reference="7XX-OK-OMF"/>
-                                <include reference="IbK-4d-N1n"/>
-                                <include reference="Rdd-I0-1OZ"/>
-                                <include reference="uMm-VN-9Ua"/>
-                                <include reference="6r8-Kf-UJV"/>
-                                <include reference="CHc-se-FVE"/>
-                                <include reference="psd-d6-9BF"/>
-                                <include reference="Snw-ki-QfZ"/>
                             </mask>
                         </variation>
                     </view>
@@ -1697,6 +1699,6 @@
         <image name="image20.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dUu-Py-laA"/>
+        <segue reference="KHV-lx-QCD"/>
     </inferredMetricsTieBreakers>
 </document>

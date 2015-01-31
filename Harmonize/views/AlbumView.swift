@@ -33,7 +33,7 @@ class AlbumView: UIView {
         albumYear.textColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)
         albumYear.font = UIFont(name: "Avenir-Light", size: 8)
         
-        let artistName = UILabel(frame: CGRectMake(genreImage.frame.origin.x + genreImage.frame.size.width + 10, albumYear.frame.origin.y - 8 - 7, self.frame.size.width - genreImage.frame.origin.x - genreImage.frame.size.width - 10 - 11, 10))
+        let artistName = UILabel(frame: CGRectMake(genreImage.frame.origin.x + genreImage.frame.size.width + 10, albumYear.frame.origin.y - 10 - 1, self.frame.size.width - genreImage.frame.origin.x - genreImage.frame.size.width - 10 - 11, 10))
         artistName.text = album.artists[0].name
         artistName.textAlignment = .Right
         artistName.textColor = UIColor(red: 0.45, green: 0.45, blue: 0.45, alpha: 1)

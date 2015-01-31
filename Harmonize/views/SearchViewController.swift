@@ -23,15 +23,16 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
         super.viewDidLoad()
         
         textField.delegate = self
+        textField.text = searchTerm
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
+        tableView.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
         tableView.sectionFooterHeight = 0
         tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.height, 12))
         
-        SPTRequest.performSearchWithQuery("A", queryType: .QueryTypeArtist, session: spotifySession) { (error, list) -> Void in
+        SPTRequest.performSearchWithQuery(searchTerm, queryType: .QueryTypeArtist, session: spotifySession) { (error, list) -> Void in
             if error != nil {
                 println(error.localizedDescription)
             } else {
@@ -73,7 +74,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var header = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 48))
-        header.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
+        header.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
         
         var title = UILabel()
         title.text = "Spotify Results"
@@ -94,7 +95,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .Default, reuseIdentifier: "ArtistCell")
         
-        cell.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
+        cell.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
         
         let backView = UIImageView(frame: cell.frame)
         backView.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)

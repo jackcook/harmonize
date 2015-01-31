@@ -9,6 +9,7 @@
 class BrowseViewController: UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var textField: UITextField!
     
     var albumViews = [AlbumView]()
     
@@ -66,6 +67,11 @@ class BrowseViewController: UIViewController {
             
             scrollView.clipsToBounds = false
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let svc = segue.destinationViewController as SearchViewController
+        svc.searchTerm = textField.text
     }
     
     override func prefersStatusBarHidden() -> Bool {
