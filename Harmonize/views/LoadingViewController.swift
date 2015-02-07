@@ -18,7 +18,7 @@ class LoadingViewController: UIViewController, RdioDelegate {
                 authenticateSpotify()
             } else {
                 let spotifyAuth = SPTAuth.defaultInstance()
-                let spotifyLoginURL = spotifyAuth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope])
+                let spotifyLoginURL = spotifyAuth.loginURLForClientId(spotifyClientID, declaredRedirectURL: NSURL(string: spotifyCallbackURL), scopes: [SPTAuthStreamingScope, SPTAuthUserLibraryReadScope])
                 UIApplication.sharedApplication().openURL(spotifyLoginURL)
             }
             

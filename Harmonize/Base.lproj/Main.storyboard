@@ -692,7 +692,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4671" y="135.75"/>
+            <point key="canvasLocation" x="3622.5" y="836.25"/>
         </scene>
         <!--Browse View Controller-->
         <scene sceneID="noO-55-mwY">
@@ -1061,7 +1061,7 @@
                         <outlet property="scrollView" destination="2UX-3q-3Wu" id="czM-lw-kzL"/>
                         <outlet property="tableView" destination="Xd9-6F-Ppe" id="rkV-e2-UZB"/>
                         <outlet property="textField" destination="RD4-Es-xxd" id="rRF-hf-M1j"/>
-                        <segue destination="Mz4-TU-iqT" kind="show" identifier="artistSegue" id="KHV-lx-QCD"/>
+                        <segue destination="vXZ-lx-hvc" kind="show" identifier="trackSegue" id="3Cp-Kh-yLh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZt-0c-pq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1740,6 +1740,6 @@
         <image name="image20.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="KHV-lx-QCD"/>
+        <segue reference="3Cp-Kh-yLh"/>
     </inferredMetricsTieBreakers>
 </document>

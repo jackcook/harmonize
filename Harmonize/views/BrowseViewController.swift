@@ -13,6 +13,9 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet var tableView: UITableView!
     
     var albumViews = [AlbumView]()
+    var recentTracks = [SPTTrack]()
+    
+    var trackToSend: SPTTrack!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         let locale = NSLocale.currentLocale()
         let countryCode = locale.objectForKey(NSLocaleCountryCode) as String
         
-        SPTRequest.requestNewReleasesForCountry(countryCode, limit: 6, offset: 0, session: spotifySession) { (error, listPage) -> Void in
+        SPTRequest.requestNewReleasesForCountry(countryCode, limit: 10, offset: 0, session: spotifySession) { (error, listPage) -> Void in
             if error != nil {
                 println("\(error.localizedDescription)")
             }
@@ -60,6 +63,20 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
                 })
             }
         }
+        
+        SPTRequest.savedTracksForUserInSession(spotifySession, callback: { (error, listPage) -> Void in
+            if error != nil {
+                println(error.localizedDescription)
+            }
+            
+            let lp = listPage as SPTListPage
+            
+            for track in lp.items {
+                self.recentTracks.append(track as SPTTrack)
+            }
+            
+            self.tableView.reloadData()
+        })
     }
     
     override func viewDidLayoutSubviews() {
@@ -76,13 +93,8 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let svc = segue.destinationViewController as SearchViewController
-        svc.searchTerm = textField.text
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return recentTracks.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -103,31 +115,29 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
         numLabel.frame = CGRectMake(12, (48 - numLabel.frame.size.height) / 2, numLabel.frame.size.width, numLabel.frame.size.height)
         
         var nameLabel = UILabel()
-        //nameLabel.text = indexPath.section == 0 ? topTracks[indexPath.row].name : albums[indexPath.row].name
-        nameLabel.text = "Testing"
+        nameLabel.text = recentTracks[indexPath.row].name
         nameLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         nameLabel.font = UIFont(name: "Avenir-Light", size: 14)
         nameLabel.sizeToFit()
         nameLabel.frame = CGRectMake(38, (48 - nameLabel.frame.size.height) / 2, nameLabel.frame.size.width, nameLabel.frame.size.height)
         
         var timeLabel = UILabel()
-        //timeLabel.text = indexPath.section == 0 ? "\(Int(topTracks[indexPath.row].duration))" : "\(albums[indexPath.row].firstTrackPage.items.count) Songs"
-        timeLabel.text = "8:00"
+        timeLabel.text = "\(Int(recentTracks[indexPath.row].duration))"
         timeLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1)
         timeLabel.font = UIFont(name: "Avenir-Light", size: 14)
         
-//        if indexPath.section == 0 {
-//            var mins = 0
-//            var secs = Int(topTracks[indexPath.row].duration)
-//            
-//            while secs >= 60 {
-//                secs -= 60
-//                mins += 1
-//            }
-//            
-//            let secstr = NSString(format: "%02d", secs)
-//            timeLabel.text = "\(mins):\(secstr)"
-//        }
+        if indexPath.section == 0 {
+            var mins = 0
+            var secs = Int(recentTracks[indexPath.row].duration)
+            
+            while secs >= 60 {
+                secs -= 60
+                mins += 1
+            }
+            
+            let secstr = NSString(format: "%02d", secs)
+            timeLabel.text = "\(mins):\(secstr)"
+        }
         
         timeLabel.sizeToFit()
         timeLabel.frame = CGRectMake(tableView.bounds.size.width - timeLabel.frame.size.width - 12, (48 - timeLabel.frame.size.height) / 2, timeLabel.frame.size.width, timeLabel.frame.size.height)
@@ -146,9 +156,19 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        uriToSend = searchResults[indexPath.row].uri
+        trackToSend = recentTracks[indexPath.row]
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//        self.performSegueWithIdentifier("artistSegue", sender: self)
+        self.performSegueWithIdentifier("trackSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "searchSegue" {
+            let svc = segue.destinationViewController as SearchViewController
+            svc.searchTerm = textField.text
+        } else if segue.identifier == "trackSegue" {
+            var tvc = segue.destinationViewController as TrackViewController
+            tvc.track = trackToSend
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool {

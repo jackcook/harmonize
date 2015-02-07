@@ -73,7 +73,7 @@ class HMRequest: NSObject {
                 
                 let lp = listPage as SPTListPage
                 
-                for partialAlbum in lp.items {
+                for partialAlbum in lp.items as [SPTPartialAlbum] {
                     HMAlbum.fromSpotifyPartialAlbum(partialAlbum as SPTPartialAlbum) { (album) -> Void in
                         if error != nil {
                             println("\(error.localizedDescription)")
