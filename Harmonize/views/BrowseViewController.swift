@@ -6,15 +6,22 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
-class BrowseViewController: UIViewController {
+class BrowseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var textField: UITextField!
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var tableView: UITableView!
     
     var albumViews = [AlbumView]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tableView.backgroundColor = self.view.backgroundColor
+        tableView.contentInset = UIEdgeInsetsZero
         
         /*HMRequest.requestFeaturedAlbums() { (albums) -> Void in
             for album in albums {
@@ -72,6 +79,76 @@ class BrowseViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let svc = segue.destinationViewController as SearchViewController
         svc.searchTerm = textField.text
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell(style: .Default, reuseIdentifier: "SongCell")
+        
+        cell.backgroundColor = self.view.backgroundColor
+        
+        var backView = UIView(frame: cell.frame)
+        backView.backgroundColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
+        
+        cell.selectedBackgroundView = backView
+        
+        var numLabel = UILabel()
+        numLabel.text = "\(indexPath.row + 1)"
+        numLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1)
+        numLabel.font = UIFont(name: "Avenir-Light", size: 14)
+        numLabel.sizeToFit()
+        numLabel.frame = CGRectMake(12, (48 - numLabel.frame.size.height) / 2, numLabel.frame.size.width, numLabel.frame.size.height)
+        
+        var nameLabel = UILabel()
+        //nameLabel.text = indexPath.section == 0 ? topTracks[indexPath.row].name : albums[indexPath.row].name
+        nameLabel.text = "Testing"
+        nameLabel.textColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        nameLabel.font = UIFont(name: "Avenir-Light", size: 14)
+        nameLabel.sizeToFit()
+        nameLabel.frame = CGRectMake(38, (48 - nameLabel.frame.size.height) / 2, nameLabel.frame.size.width, nameLabel.frame.size.height)
+        
+        var timeLabel = UILabel()
+        //timeLabel.text = indexPath.section == 0 ? "\(Int(topTracks[indexPath.row].duration))" : "\(albums[indexPath.row].firstTrackPage.items.count) Songs"
+        timeLabel.text = "8:00"
+        timeLabel.textColor = UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1)
+        timeLabel.font = UIFont(name: "Avenir-Light", size: 14)
+        
+//        if indexPath.section == 0 {
+//            var mins = 0
+//            var secs = Int(topTracks[indexPath.row].duration)
+//            
+//            while secs >= 60 {
+//                secs -= 60
+//                mins += 1
+//            }
+//            
+//            let secstr = NSString(format: "%02d", secs)
+//            timeLabel.text = "\(mins):\(secstr)"
+//        }
+        
+        timeLabel.sizeToFit()
+        timeLabel.frame = CGRectMake(tableView.bounds.size.width - timeLabel.frame.size.width - 12, (48 - timeLabel.frame.size.height) / 2, timeLabel.frame.size.width, timeLabel.frame.size.height)
+        
+        nameLabel.frame.size.width = timeLabel.frame.origin.x - nameLabel.frame.origin.x - 16
+        
+        cell.addSubview(numLabel)
+        cell.addSubview(nameLabel)
+        cell.addSubview(timeLabel)
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 48
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        uriToSend = searchResults[indexPath.row].uri
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//        self.performSegueWithIdentifier("artistSegue", sender: self)
     }
     
     override func prefersStatusBarHidden() -> Bool {
