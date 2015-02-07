@@ -13,13 +13,24 @@ public class Mozart {
     public func load(url: String) -> LoadingClass {
         let loadingClass = LoadingClass()
         loadingClass.url = url
+        
         return loadingClass
+    }
+    
+    public func load(url: String, withCompletionBlock block: (UIImage -> Void)) {
+        let loadingClass = LoadingClass()
+        loadingClass.url = url
+        
+        loadingClass.getImage() { (image) -> Void in
+            block(image)
+        }
     }
 }
 
 public class LoadingClass: NSObject {
     
     var url: String!
+    var image: UIImage!
     var completionBlock: (UIImage -> Void)!
     
     public func into(imageView: UIImageView) -> LoadingClass {

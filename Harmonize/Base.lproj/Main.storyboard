@@ -285,7 +285,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="pauseButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3N4-qR-NrR"/>
+                                    <action selector="pauseButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vOK-BN-GAR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcc-bm-fPR">

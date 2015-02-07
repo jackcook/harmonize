@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Jack Cook. All rights reserved.
 //
 
+import AVFoundation
+import MediaPlayer
+
 class TrackViewController: UIViewController {
     
     @IBOutlet var coverImage: UIImageView!
@@ -21,6 +24,7 @@ class TrackViewController: UIViewController {
     @IBOutlet var sourceLabel: UILabel!
     
     var track: SPTTrack!
+    var coverArtwork: UIImage!
     
     var paused = false
     var total = 0
@@ -47,10 +51,21 @@ class TrackViewController: UIViewController {
         
         self.albumTitle.text = "\(track.artists[0].name) – \(track.album.name)"
         self.songTitle.text = track.name
-        Mozart().load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage)
+        Mozart().load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage).completion() { (image) -> Void in
+            self.coverArtwork = image
+        }
         
         spotifyPlayer.playTrackProvider(track, callback: nil)
         spotifyPlayer.setVolume(0.75, callback: nil)
+        
+        let nowPlayingInfo = [
+            MPMediaItemPropertyArtist: track.artists[0].name,
+            MPMediaItemPropertyTitle: track.name,
+            MPMediaItemPropertyPlaybackDuration: track.duration
+        ]
+        
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingInfo
         
         let timer = NSTimer(timeInterval: 0.1, target: self, selector: "updateTime", userInfo: nil, repeats: true)
         NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
@@ -58,6 +73,17 @@ class TrackViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         pbPoint = pauseButton.frame.origin
+    }
+    
+    override func remoteControlReceivedWithEvent(event: UIEvent) {
+        if event.type == .RemoteControl {
+            switch event.subtype {
+            case .RemoteControlPause, .RemoteControlPlay, .RemoteControlTogglePlayPause:
+                pauseButtonPressed()
+            default:
+                println(event.subtype.rawValue)
+            }
+        }
     }
     
     func updateTime() {
@@ -75,6 +101,28 @@ class TrackViewController: UIViewController {
         
         let secstr = NSString(format: "%02d", secs)
         currentTime.text = "\(mins):\(secstr)"
+        
+        var nowPlayingInfo = [
+            MPMediaItemPropertyArtist: track.artists[0].name,
+            MPMediaItemPropertyTitle: track.name,
+            MPMediaItemPropertyPlaybackDuration: track.duration,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: spotifyPlayer.currentPlaybackPosition
+        ]
+        
+        if let ca = coverArtwork {
+            let artwork = MPMediaItemArtwork(image: ca)
+            
+            nowPlayingInfo = [
+                MPMediaItemPropertyArtist: track.artists[0].name,
+                MPMediaItemPropertyTitle: track.name,
+                MPMediaItemPropertyPlaybackDuration: track.duration,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: spotifyPlayer.currentPlaybackPosition,
+                MPMediaItemPropertyArtwork: artwork
+            ]
+        }
+        
+        UIApplication.sharedApplication().beginReceivingRemoteControlEvents()
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingInfo
     }
     
     @IBAction func backButton(sender: AnyObject) {
@@ -99,7 +147,7 @@ class TrackViewController: UIViewController {
     @IBAction func previousButton(sender: AnyObject) {
     }
     
-    @IBAction func pauseButton(sender: AnyObject) {
+    @IBAction func pauseButtonPressed() {
         pauseButton.setImage(paused ? UIImage(named: "image08.png") : UIImage(named: "image09.png"), forState: .Normal)
         pauseButton.frame = CGRectMake(pauseButton.frame.origin.x, pauseButton.frame.origin.y, (paused ? (74/99) : (90/103)) * pauseButton.frame.size.height, pauseButton.frame.size.height)
         pauseButton.center = pbPoint

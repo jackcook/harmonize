@@ -71,6 +71,7 @@
 		6B6151C418185BD78A6E6750 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A62D6E2202C7ED51E41CBC1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB0B0F011A573B6700550B34 /* Mozart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mozart.swift; sourceTree = "<group>"; };
+		EB10F8431A86A24300F50049 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		EB1C02301A583FE700D14C8E /* TrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
 		EB1F549C1A5702230098A956 /* HMAuthentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAuthentication.swift; sourceTree = "<group>"; };
 		EB1F549F1A571CDE0098A956 /* Rdio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rdio.framework; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 		EB1F549E1A571CDE0098A956 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EB10F8431A86A24300F50049 /* MediaPlayer.framework */,
 				EBAB8A091A5A4369002933BE /* MobileCoreServices.framework */,
 				EBAB8A071A5A4364002933BE /* SystemConfiguration.framework */,
 				EB1F549F1A571CDE0098A956 /* Rdio.framework */,
