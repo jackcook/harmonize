@@ -32,6 +32,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     var currentURI = 0
     var currentTrack: SPTTrack!
     
+    var invalidateNextStop = false
+    
     var paused = false
     var total = 0
     
@@ -153,6 +155,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     }
     
     @IBAction func previousButtonPressed() {
+        invalidateNextStop = true
+        
         currentURI -= 1
         updateMetadata(uris[currentURI])
         spotifyPlayer.playURI(uris[currentURI], callback: nil)
@@ -168,14 +172,18 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     }
     
     @IBAction func nextButtonPressed() {
+        invalidateNextStop = true
+        
         currentURI += 1
         updateMetadata(uris[currentURI])
         spotifyPlayer.playURI(uris[currentURI], callback: nil)
     }
     
-    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didChangePlaybackStatus isPlaying: Bool) {
-        if !isPlaying {
+    func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
+        if !invalidateNextStop {
             nextButtonPressed()
+        } else {
+            invalidateNextStop = false
         }
     }
     
