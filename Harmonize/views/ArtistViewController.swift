@@ -23,7 +23,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     var laidOut = false
     
     var artistURI: NSURL!
-    var trackToSend: SPTTrack!
+    var positionToSend = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -211,7 +211,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
-            trackToSend = topTracks[indexPath.row]
+            positionToSend = indexPath.row
             self.performSegueWithIdentifier("songSegue", sender: self)
         }
         
@@ -223,8 +223,15 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var pvc = segue.destinationViewController as TrackViewController
-        //pvc.track = trackToSend
+        let tvc = segue.destinationViewController as TrackViewController
+        
+        var uris = [NSURL]()
+        for track in topTracks {
+            uris.append(track.uri)
+        }
+        
+        tvc.uris = uris
+        tvc.currentURI = positionToSend
     }
     
     override func prefersStatusBarHidden() -> Bool {

@@ -30,7 +30,9 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     
     var uris: [NSURL]!
     var currentURI = 0
+    
     var currentTrack: SPTTrack!
+    var coverArtwork: MPMediaItemArtwork!
     
     var repeat = false
     var shuffle = false
@@ -76,6 +78,10 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
             switch event.subtype {
             case .RemoteControlPause, .RemoteControlPlay, .RemoteControlTogglePlayPause:
                 pauseButtonPressed()
+            case .RemoteControlNextTrack:
+                nextButtonPressed()
+            case .RemoteControlPreviousTrack:
+                previousButtonPressed()
             default:
                 println(event.subtype.rawValue)
             }
@@ -97,11 +103,33 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
         
         let secstr = NSString(format: "%02d", secs)
         currentTime.text = "\(mins):\(secstr)"
+        
+        if let ca = coverArtwork {
+            let nowPlayingInfo = [
+                MPMediaItemPropertyArtist: currentTrack.artists[0].name,
+                MPMediaItemPropertyTitle: currentTrack.name,
+                MPMediaItemPropertyPlaybackDuration: currentTrack.duration,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: spotifyPlayer.currentPlaybackPosition,
+                MPMediaItemPropertyArtwork: coverArtwork
+            ]
+            
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingInfo
+        } else {
+            let nowPlayingInfo = [
+                MPMediaItemPropertyArtist: currentTrack.artists[0].name,
+                MPMediaItemPropertyTitle: currentTrack.name,
+                MPMediaItemPropertyPlaybackDuration: currentTrack.duration,
+                MPNowPlayingInfoPropertyElapsedPlaybackTime: spotifyPlayer.currentPlaybackPosition
+            ]
+            
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingInfo
+        }
     }
     
     func updateMetadata(uri: NSURL) {
         SPTTrack.trackWithURI(uri, session: spotifySession) { (error, t) -> Void in
             let track = t as SPTTrack
+            self.currentTrack = track
             
             self.total = Int(track.duration)
             
@@ -119,17 +147,7 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
             self.albumTitle.text = "\(track.artists[0].name) – \(track.album.name)"
             self.songTitle.text = track.name
             Mozart().load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage).completion() { (image) -> Void in
-                let artwork = MPMediaItemArtwork(image: image)
-                
-                let nowPlayingInfo = [
-                    MPMediaItemPropertyArtist: track.artists[0].name,
-                    MPMediaItemPropertyTitle: track.name,
-                    MPMediaItemPropertyPlaybackDuration: track.duration,
-                    MPNowPlayingInfoPropertyElapsedPlaybackTime: spotifyPlayer.currentPlaybackPosition,
-                    MPMediaItemPropertyArtwork: artwork
-                ]
-                
-                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nowPlayingInfo
+                self.coverArtwork = MPMediaItemArtwork(image: image)
             }
         }
     }
