@@ -23,6 +23,11 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     @IBOutlet var pauseButton: UIButton!
     @IBOutlet var sourceLabel: UILabel!
     
+    @IBOutlet var likeButton: UIButton!
+    @IBOutlet var dislikeButton: UIButton!
+    @IBOutlet var shuffleButton: UIButton!
+    @IBOutlet var repeatButton: UIButton!
+    
     var track: SPTTrack!
     var uris: [NSURL]!
     var coverArtwork: UIImage!
@@ -126,17 +131,20 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     @IBAction func optionsButton(sender: AnyObject) {
     }
     
-    @IBAction func likeButton(sender: AnyObject) {
+    @IBAction func likeButtonPressed() {
     }
     
-    @IBAction func dislikeButton(sender: AnyObject) {
+    @IBAction func dislikeButtonPressed() {
     }
     
-    @IBAction func shuffleButton(sender: AnyObject) {
+    @IBAction func shuffleButtonPressed() {
+        spotifyPlayer.shuffle = !spotifyPlayer.shuffle
+        shuffleButton.setImage(spotifyPlayer.shuffle ? UIImage(named: "image23.png") : UIImage(named: "image13.png"), forState: .Normal)
     }
     
-    @IBAction func repeatButton(sender: AnyObject) {
-        spotifyPlayer.repeat = true
+    @IBAction func repeatButtonPressed() {
+        spotifyPlayer.repeat = !spotifyPlayer.repeat
+        repeatButton.setImage(spotifyPlayer.repeat ? UIImage(named: "image24.png") : UIImage(named: "image14.png"), forState: .Normal)
     }
     
     @IBAction func previousButton(sender: AnyObject) {

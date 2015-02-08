@@ -152,7 +152,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="shuffleButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="5t3-PR-0Gt"/>
+                                    <action selector="shuffleButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="APf-y2-uhQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQr-xV-dap">
@@ -177,7 +177,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="repeatButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ym0-42-CQo"/>
+                                    <action selector="repeatButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wLR-PR-pXp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nw-cK-Mmf">
@@ -202,7 +202,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="likeButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="hwr-EQ-6CF"/>
+                                    <action selector="likeButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="U0z-jW-cDu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIX-xv-9oO">
@@ -227,7 +227,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="dislikeButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9CH-bc-ZlG"/>
+                                    <action selector="dislikeButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ULh-YC-8f0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGr-by-Gl0">
@@ -683,8 +683,12 @@
                         <outlet property="albumTitle" destination="RCo-ML-BjZ" id="qlX-1j-u8a"/>
                         <outlet property="coverImage" destination="swh-4s-pFe" id="yKz-im-cc5"/>
                         <outlet property="currentTime" destination="aW0-Zw-V1L" id="Oxs-DH-Tri"/>
+                        <outlet property="dislikeButton" destination="pIX-xv-9oO" id="6cx-F5-wcS"/>
+                        <outlet property="likeButton" destination="2Nw-cK-Mmf" id="fkm-rQ-LWw"/>
                         <outlet property="pauseButton" destination="WKq-9J-Wd5" id="igG-q9-OGa"/>
                         <outlet property="progressBarLeft" destination="jeF-PI-RKo" id="hBJ-bi-JMe"/>
+                        <outlet property="repeatButton" destination="nQr-xV-dap" id="geV-2y-att"/>
+                        <outlet property="shuffleButton" destination="yK5-vu-Pi8" id="1uO-6x-2Cw"/>
                         <outlet property="songTitle" destination="hW7-1N-URc" id="BRl-Mb-8dA"/>
                         <outlet property="sourceLabel" destination="m2i-9d-vOU" id="kdt-1Y-5h8"/>
                         <outlet property="totalTime" destination="Q0n-gP-NtS" id="JWl-Pi-9Nn"/>
