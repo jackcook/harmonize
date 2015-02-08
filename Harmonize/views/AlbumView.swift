@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlbumView: UIView {
+class AlbumView: UIButton {
 
     init(album: SPTAlbum, frame: CGRect) {
         super.init(frame: frame)

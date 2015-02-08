@@ -224,7 +224,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         var pvc = segue.destinationViewController as TrackViewController
-        pvc.track = trackToSend
+        //pvc.track = trackToSend
     }
     
     override func prefersStatusBarHidden() -> Bool {
