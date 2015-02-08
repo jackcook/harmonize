@@ -34,6 +34,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     var currentTrack: SPTTrack!
     var coverArtwork: MPMediaItemArtwork!
     
+    var like = false
+    var dislike = false
     var repeat = false
     var shuffle = false
     
@@ -160,9 +162,27 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     }
     
     @IBAction func likeButtonPressed() {
+        dislike = false
+        dislikeButton.setImage(UIImage(named: "image12.png"), forState: .Normal)
+        
+        like = !like
+        likeButton.setImage(like ? UIImage(named: "image21.png") : UIImage(named: "image11.png"), forState: .Normal)
     }
     
     @IBAction func dislikeButtonPressed() {
+        like = false
+        likeButton.setImage(UIImage(named: "image11.png"), forState: .Normal)
+        
+        dislike = !dislike
+        dislikeButton.setImage(dislike ? UIImage(named: "image22.png") : UIImage(named: "image12.png"), forState: .Normal)
+    }
+    
+    func resetRating() {
+        like = false
+        likeButton.setImage(UIImage(named: "image11.png"), forState: .Normal)
+        
+        dislike = false
+        dislikeButton.setImage(UIImage(named: "image12.png"), forState: .Normal)
     }
     
     @IBAction func shuffleButtonPressed() {
@@ -182,6 +202,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
             currentURI -= 1
             updateMetadata(uris[currentURI])
             spotifyPlayer.playURI(uris[currentURI], callback: nil)
+            
+            resetRating()
         }
     }
     
@@ -201,6 +223,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
             currentURI += 1
             updateMetadata(uris[currentURI])
             spotifyPlayer.playURI(uris[currentURI], callback: nil)
+            
+            resetRating()
         }
     }
     
@@ -219,6 +243,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
                     currentURI = newURI
                     updateMetadata(uris[currentURI])
                     spotifyPlayer.playURI(uris[currentURI], callback: nil)
+                    
+                    resetRating()
                 } else {
                     nextButtonPressed()
                 }
