@@ -320,7 +320,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunburst" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW7-1N-URc">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="6Pj-UP-VV1"/>
+                                    <constraint firstAttribute="height" constant="21" id="6Pj-UP-VV1">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                                    </constraint>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="21"/>
                                 <color key="textColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
@@ -534,7 +536,9 @@
                             <constraint firstItem="qcc-bm-fPR" firstAttribute="leading" secondItem="WKq-9J-Wd5" secondAttribute="trailing" constant="45" id="shI-85-jlo">
                                 <variation key="heightClass=regular-widthClass=compact" constant="46"/>
                             </constraint>
-                            <constraint firstItem="pIX-xv-9oO" firstAttribute="top" secondItem="hW7-1N-URc" secondAttribute="bottom" constant="8" id="tux-L2-DPf"/>
+                            <constraint firstItem="pIX-xv-9oO" firstAttribute="top" secondItem="hW7-1N-URc" secondAttribute="bottom" constant="8" id="tux-L2-DPf">
+                                <variation key="heightClass=regular-widthClass=compact" constant="4"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" secondItem="m2i-9d-vOU" secondAttribute="trailing" constant="16" id="u9w-WC-97S"/>
                             <constraint firstItem="swh-4s-pFe" firstAttribute="top" secondItem="tpl-yC-g8N" secondAttribute="bottom" id="wxz-8y-no7"/>
                             <constraint firstItem="7Hw-5w-qZU" firstAttribute="centerY" secondItem="QlU-oP-Alu" secondAttribute="centerY" constant="-0.5" id="xJ1-Tb-UP6"/>

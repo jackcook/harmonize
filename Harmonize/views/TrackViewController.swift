@@ -32,6 +32,9 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     var currentURI = 0
     var currentTrack: SPTTrack!
     
+    var repeat = false
+    var shuffle = false
+    
     var invalidateNextStop = false
     
     var paused = false
@@ -145,21 +148,23 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     }
     
     @IBAction func shuffleButtonPressed() {
-        spotifyPlayer.shuffle = !spotifyPlayer.shuffle
-        shuffleButton.setImage(spotifyPlayer.shuffle ? UIImage(named: "image23.png") : UIImage(named: "image13.png"), forState: .Normal)
+        shuffle = !shuffle
+        shuffleButton.setImage(shuffle ? UIImage(named: "image23.png") : UIImage(named: "image13.png"), forState: .Normal)
     }
     
     @IBAction func repeatButtonPressed() {
-        spotifyPlayer.repeat = !spotifyPlayer.repeat
-        repeatButton.setImage(spotifyPlayer.repeat ? UIImage(named: "image24.png") : UIImage(named: "image14.png"), forState: .Normal)
+        repeat = !repeat
+        repeatButton.setImage(repeat ? UIImage(named: "image24.png") : UIImage(named: "image14.png"), forState: .Normal)
     }
     
     @IBAction func previousButtonPressed() {
-        invalidateNextStop = true
-        
-        currentURI -= 1
-        updateMetadata(uris[currentURI])
-        spotifyPlayer.playURI(uris[currentURI], callback: nil)
+        if currentURI > 0 {
+            invalidateNextStop = true
+            
+            currentURI -= 1
+            updateMetadata(uris[currentURI])
+            spotifyPlayer.playURI(uris[currentURI], callback: nil)
+        }
     }
     
     @IBAction func pauseButtonPressed() {
@@ -172,16 +177,34 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     }
     
     @IBAction func nextButtonPressed() {
-        invalidateNextStop = true
-        
-        currentURI += 1
-        updateMetadata(uris[currentURI])
-        spotifyPlayer.playURI(uris[currentURI], callback: nil)
+        if currentURI < uris.count - 1 {
+            invalidateNextStop = true
+            
+            currentURI += 1
+            updateMetadata(uris[currentURI])
+            spotifyPlayer.playURI(uris[currentURI], callback: nil)
+        }
     }
     
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStopPlayingTrack trackUri: NSURL!) {
         if !invalidateNextStop {
-            nextButtonPressed()
+            if repeat {
+                spotifyPlayer.playURI(uris[currentURI], callback: nil)
+            } else {
+                if shuffle {
+                    var newURI = Int(arc4random_uniform(UInt32(uris.count)))
+                    
+                    while newURI == currentURI {
+                        newURI = Int(arc4random_uniform(UInt32(uris.count)))
+                    }
+                    
+                    currentURI = newURI
+                    updateMetadata(uris[currentURI])
+                    spotifyPlayer.playURI(uris[currentURI], callback: nil)
+                } else {
+                    nextButtonPressed()
+                }
+            }
         } else {
             invalidateNextStop = false
         }
