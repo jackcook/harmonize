@@ -173,7 +173,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
             
             var tvc = segue.destinationViewController as TrackViewController
             tvc.uris = uris
-            tvc.track = trackToSend
+            tvc.currentTrack = trackToSend
         }
     }
     

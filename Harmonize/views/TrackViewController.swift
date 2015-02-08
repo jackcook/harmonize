@@ -28,9 +28,8 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     @IBOutlet var shuffleButton: UIButton!
     @IBOutlet var repeatButton: UIButton!
     
-    var track: SPTTrack!
     var uris: [NSURL]!
-    var coverArtwork: UIImage!
+    var currentTrack: SPTTrack!
     
     var paused = false
     var total = 0
@@ -42,7 +41,7 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
         
         coverImage.clipsToBounds = true
         
-        updateMetadata(track)
+        updateMetadata(currentTrack)
         
         spotifyPlayer.setURIs(uris, callback: { (error) -> Void in
             if error != nil {
@@ -147,7 +146,7 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
         repeatButton.setImage(spotifyPlayer.repeat ? UIImage(named: "image24.png") : UIImage(named: "image14.png"), forState: .Normal)
     }
     
-    @IBAction func previousButton(sender: AnyObject) {
+    @IBAction func previousButtonPressed() {
         spotifyPlayer.skipPrevious { (error) -> Void in
             let trackURI = spotifyPlayer.currentTrackMetadata[SPTAudioStreamingMetadataTrackURI] as String
             SPTTrack.trackWithURI(NSURL(string: trackURI), session: spotifySession, callback: { (error, track) -> Void in
@@ -177,6 +176,7 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     func audioStreaming(audioStreaming: SPTAudioStreamingController!, didStartPlayingTrack trackUri: NSURL!) {
         SPTTrack.trackWithURI(trackUri, session: spotifySession) { (error, t) -> Void in
             let track = t as SPTTrack
+            self.currentTrack = track
             self.updateMetadata(track)
         }
     }

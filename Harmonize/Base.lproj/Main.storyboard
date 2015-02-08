@@ -256,7 +256,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="previousButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="J9K-WA-HRt"/>
+                                    <action selector="previousButtonPressed" destination="vXZ-lx-hvc" eventType="touchUpInside" id="fBl-RY-5ez"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKq-9J-Wd5">
@@ -1744,6 +1744,6 @@
         <image name="image20.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Cp-Kh-yLh"/>
+        <segue reference="cgh-oa-bV5"/>
     </inferredMetricsTieBreakers>
 </document>
