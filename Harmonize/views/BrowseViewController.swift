@@ -15,7 +15,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     var albumViews = [AlbumView]()
     var recentTracks = [SPTTrack]()
     
-    var positionToSend = 0
+    var trackToSend: SPTTrack!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,7 +156,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        positionToSend = indexPath.row
+        trackToSend = recentTracks[indexPath.row]
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier("trackSegue", sender: self)
     }
@@ -173,7 +173,7 @@ class BrowseViewController: UIViewController, UITableViewDataSource, UITableView
             
             var tvc = segue.destinationViewController as TrackViewController
             tvc.uris = uris
-            tvc.currentURI = positionToSend
+            tvc.track = trackToSend
         }
     }
     
