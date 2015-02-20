@@ -21,7 +21,7 @@ class AlbumView: UIButton {
         let genreImage = UIImageView(frame: CGRectMake(11, self.frame.size.height - 11 - 14, 14, 14))
         Mozart.load("http://puu.sh/f9vlF/ab22dbe3f5.png").into(genreImage)
         
-        let albumTitle = UILabel(frame: CGRectMake(4, imageView.frame.size.height + 4, frame.size.width - 8, genreImage.frame.origin.y - imageView.frame.size.height - 8))
+        let albumTitle = UILabel(frame: CGRectMake(4, imageView.frame.size.height + 3, frame.size.width - 8, genreImage.frame.origin.y - imageView.frame.size.height - 8))
         albumTitle.text = album.name
         albumTitle.textAlignment = .Center
         albumTitle.textColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)

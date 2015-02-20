@@ -178,6 +178,11 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
     }
     
     func resetRating() {
+        pauseButton.setImage(UIImage(named: "image08.png"), forState: .Normal)
+        pauseButton.frame = CGRectMake(pauseButton.frame.origin.x, pauseButton.frame.origin.y, (74/99) * pauseButton.frame.size.height, pauseButton.frame.size.height)
+        pauseButton.center = pbPoint
+        paused = false
+        
         like = false
         likeButton.setImage(UIImage(named: "image11.png"), forState: .Normal)
         
