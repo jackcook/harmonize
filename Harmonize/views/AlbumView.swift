@@ -18,14 +18,15 @@ class AlbumView: UIButton {
         let imageView = UIImageView(frame: CGRectMake(0, 0, frame.size.width, frame.size.width))
         Mozart.load(album.largestCover.imageURL.absoluteString!).into(imageView)
         
-        let albumTitle = UILabel(frame: CGRectMake(4, imageView.frame.size.height + 14, frame.size.width - 8, 12))
+        let genreImage = UIImageView(frame: CGRectMake(11, self.frame.size.height - 11 - 14, 14, 14))
+        Mozart.load("http://puu.sh/f9vlF/ab22dbe3f5.png").into(genreImage)
+        
+        let albumTitle = UILabel(frame: CGRectMake(4, imageView.frame.size.height + 4, frame.size.width - 8, genreImage.frame.origin.y - imageView.frame.size.height - 8))
         albumTitle.text = album.name
         albumTitle.textAlignment = .Center
         albumTitle.textColor = UIColor(red: 0.83, green: 0.83, blue: 0.83, alpha: 1)
+        albumTitle.numberOfLines = 2
         albumTitle.font = UIFont(name: "Avenir-Light", size: 12)
-        
-        let genreImage = UIImageView(frame: CGRectMake(11, self.frame.size.height - 11 - 14, 14, 14))
-        Mozart.load("http://puu.sh/f9vlF/ab22dbe3f5.png").into(genreImage)
         
         let albumYear = UILabel(frame: CGRectMake(genreImage.frame.origin.x + genreImage.frame.size.width + 10, self.frame.size.height - 11 - 8, self.frame.size.width - genreImage.frame.origin.x - genreImage.frame.size.width - 10 - 11, 8))
         albumYear.text = "\(album.releaseYear)"
