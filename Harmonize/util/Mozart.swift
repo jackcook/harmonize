@@ -1,72 +1,111 @@
+// Mozart.swift (v. 0.1)
 //
-//  Mozart.swift
-//  Element Animation
+// Copyright (c) 2015 Jack Cook
 //
-//  Created by Jack Cook on 12/7/14.
-//  Copyright (c) 2014 CosmicByte. All rights reserved.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 import UIKit
 
-public class Mozart {
+class Mozart {
     
-    public func load(url: String) -> LoadingClass {
-        let loadingClass = LoadingClass()
-        loadingClass.url = url
-        
+    class func load(url: String) -> LoadingClass {
+        let loadingClass = LoadingClass(url: url)
         return loadingClass
-    }
-    
-    public func load(url: String, withCompletionBlock block: (UIImage -> Void)) {
-        let loadingClass = LoadingClass()
-        loadingClass.url = url
-        
-        loadingClass.getImage() { (image) -> Void in
-            block(image)
-        }
     }
 }
 
-public class LoadingClass: NSObject {
+class LoadingClass {
     
     var url: String!
-    var image: UIImage!
     var completionBlock: (UIImage -> Void)!
     
-    public func into(imageView: UIImageView) -> LoadingClass {
-        getImage() { (image) -> Void in
-            imageView.image = image
+    var imageView: UIImageView!
+    var button: UIButton!
+    var controlState: UIControlState!
+    var controlStates: [UIControlState]!
+    var holderType = ImageHolder.Unknown
+    
+    init(url: String) {
+        self.url = url
+        
+        getImage() { (img) -> Void in
+            if let cb = self.completionBlock {
+                self.completionBlock(img)
+            }
+            
+            switch self.holderType {
+            case .ImageView:
+                self.imageView.image = img
+            case .ButtonWithoutControlState:
+                self.button.setImage(img, forState: .Normal)
+            case .ButtonWithControlState:
+                self.button.setImage(img, forState: self.controlState)
+            case .ButtonWithControlStates:
+                for state in self.controlStates {
+                    self.button.setImage(img, forState: state)
+                }
+            case .Unknown:
+                break
+            }
         }
+    }
+    
+    func into(imageView: UIImageView) -> LoadingClass {
+        self.imageView = imageView
+        holderType = .ImageView
         
         return self
     }
     
-    public func into(button: UIButton) -> LoadingClass {
-        getImage() { (image) -> Void in
-            button.setImage(image, forState: UIControlState.Normal)
-        }
+    func into(button: UIButton) -> LoadingClass {
+        self.button = button
+        holderType = .ButtonWithoutControlState
         
         return self
     }
     
-    public func into(button: UIButton, forState state: UIControlState) -> LoadingClass {
-        getImage() { (image) -> Void in
-            button.setImage(image, forState: state)
-        }
+    func into(button: UIButton, forState state: UIControlState) -> LoadingClass {
+        self.button = button
+        controlState = state
+        holderType = .ButtonWithControlState
         
         return self
     }
     
-    public func completion(block: UIImage -> Void) {
+    func into(button: UIButton, forStates states: [UIControlState]) -> LoadingClass {
+        self.button = button
+        controlStates = states
+        holderType = .ButtonWithControlStates
+        
+        return self
+    }
+    
+    func completion(block: UIImage -> Void) {
         completionBlock = block
     }
     
-    func getImage(block: UIImage -> Void) {
-        var actualUrl = NSURL(string: url)!
-        var request = NSURLRequest(URL: actualUrl)
+    internal func getImage(block: UIImage -> Void) {
+        let actualUrl = NSURL(string: url)!
+        let request = NSURLRequest(URL: actualUrl)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             if error == nil {
-                var image = UIImage(data: data)!
+                let image = UIImage(data: data)!
                 block(image)
                 if (self.completionBlock != nil) {
                     self.completionBlock(image)
@@ -76,4 +115,8 @@ public class LoadingClass: NSObject {
             }
         }
     }
+}
+
+enum ImageHolder {
+    case ImageView, ButtonWithoutControlState, ButtonWithControlState, ButtonWithControlStates, Unknown
 }

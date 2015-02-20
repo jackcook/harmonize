@@ -148,7 +148,7 @@ class TrackViewController: UIViewController, SPTAudioStreamingPlaybackDelegate {
             
             self.albumTitle.text = "\(track.artists[0].name) – \(track.album.name)"
             self.songTitle.text = track.name
-            Mozart().load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage).completion() { (image) -> Void in
+            Mozart.load(track.album.largestCover.imageURL.absoluteString!).into(self.coverImage).completion() { (image) -> Void in
                 self.coverArtwork = MPMediaItemArtwork(image: image)
             }
         }

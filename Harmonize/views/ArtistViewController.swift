@@ -52,7 +52,7 @@ class ArtistViewController: UIViewController, UITableViewDataSource, UITableView
         
         SPTArtist.artistWithURI(artistURI, session: spotifySession) { (error, artist) -> Void in
             let a = artist as SPTArtist
-            Mozart().load(a.largestImage.imageURL.absoluteString!).into(self.artistImage)
+            Mozart.load(a.largestImage.imageURL.absoluteString!).into(self.artistImage)
             self.artistName.text = a.name
             
             let formatter = NSNumberFormatter()
